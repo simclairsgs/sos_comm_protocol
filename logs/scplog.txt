@@ -1,2 +1,2 @@
-Nov 28, 2022 4:43:16 PM com.sgs.sos.scp.ScpHeader getHeader
-INFO:  Length header = 37
+Nov 28, 2022 4:52:16 PM com.sgs.sos.scp.ScpHeader getHeader
+INFO:  Length header = 33
