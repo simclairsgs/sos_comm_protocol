@@ -11,10 +11,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-public class ResourceServerThread implements Runnable{
+public class HttpResourceServerThread implements Runnable{
     private final Socket socket;
 
-    ResourceServerThread(Socket socket){								// receiver socket from main thread
+    HttpResourceServerThread(Socket socket){								// receiver socket from main thread
         this.socket = socket;
     }
 

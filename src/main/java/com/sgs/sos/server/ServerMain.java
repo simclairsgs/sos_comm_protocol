@@ -2,9 +2,6 @@ package com.sgs.sos.server;
 
 import com.sgs.sos.common.ScpLogger;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.Executors;
@@ -24,12 +21,12 @@ public class ServerMain {
         public void run()
         {
             try {
-                ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(3);
+                ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
                 ServerSocket serverSocket = new ServerSocket(SERVER_PORT);				// listen to port 80800
                 scplogger.info("Web+Scp : Server Started listening on port "+ SERVER_PORT);
                 while(true) {
                     Socket socket = serverSocket.accept();						// client
-                    executor.execute(new ResourceServerThread(socket));			// serve client
+                    executor.execute(new HttpResourceServerThread(socket));			// serve client
                 }
             } catch (Exception e) {
                 scplogger.severe(e.getLocalizedMessage());
@@ -41,6 +38,9 @@ public class ServerMain {
     {
         serverThread  = new ServerThread();
         serverThread.start();
+
+        //WCP Sockets
+        ScpSocketHandler.start();
     }
 
     public static void stop()

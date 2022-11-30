@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8db67095-71a1-4c8e-af52-cfa00f0b88db" name="Changes" comment="scpheader">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/server/ResourceServerThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/server/ServerMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+    <list default="true" id="8db67095-71a1-4c8e-af52-cfa00f0b88db" name="Changes" comment="web server">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/io/WcpInputHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/server/WcpSocketHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/scplog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logs/scplog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/sos/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/sos/common/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/common/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/sos/scp/ScpData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/scp/ScpData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/sos/scp/ScpHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/scp/ScpHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/sos/server/ResourceServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/server/HttpResourceServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/sos/server/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/sos/server/ServerMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -93,7 +89,7 @@
       <workItem from="1669723403265" duration="3738000" />
       <workItem from="1669733348318" duration="163000" />
       <workItem from="1669735961260" duration="1167000" />
-      <workItem from="1669818987599" duration="1869000" />
+      <workItem from="1669818987599" duration="6968000" />
     </task>
     <task id="LOCAL-00001" summary="setup-init">
       <created>1669620819689</created>
@@ -116,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669635576869</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="web server">
+      <created>1669820886151</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669820886151</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +140,7 @@
     <MESSAGE value="setup-init" />
     <MESSAGE value="logger" />
     <MESSAGE value="scpheader" />
-    <option name="LAST_COMMIT_MESSAGE" value="scpheader" />
+    <MESSAGE value="web server" />
+    <option name="LAST_COMMIT_MESSAGE" value="web server" />
   </component>
 </project>
