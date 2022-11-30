@@ -1,2 +1,8 @@
-Nov 28, 2022 4:52:16 PM com.sgs.sos.scp.ScpHeader getHeader
-INFO:  Length header = 33
+Nov 30, 2022 8:34:55 PM com.sgs.sos.server.ServerMain$ServerThread run
+INFO: Web+Scp : Server Started listening on port 8080
+Nov 30, 2022 8:34:55 PM com.sgs.sos.scp.ScpHeader getHeader
+INFO:  Length header = 32
+Nov 30, 2022 8:35:20 PM com.sgs.sos.server.ResourceServerThread run
+INFO:  Web Req received :/
+Nov 30, 2022 8:35:38 PM com.sgs.sos.server.ResourceServerThread run
+INFO:  Web Req received :/wcp

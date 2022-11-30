@@ -9,9 +9,16 @@ public class Util {
 
     public static void printByteArray(byte[] b)
     {
+        int c = 0;
         System.out.print("[");
         for (int i = 0; i < b.length - 1; i++) {
             System.out.print(b[i] + ", ");
+            c++;
+            if(c>=4)
+            {
+                c=0;
+                System.out.println();
+            }
         }
             System.out.println(b[b.length - 1] + "]");
     }

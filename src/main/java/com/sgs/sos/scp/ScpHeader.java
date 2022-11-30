@@ -9,7 +9,6 @@ import com.sgs.sos.common.Util;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -24,7 +23,7 @@ public class ScpHeader implements Serializable {
     private long ssid;
     private byte padding = 0;
     private byte priorityMode;
-    private long HMAC;
+    private int HMAC;
     private byte scpUnitCount = 1;
 
     public ScpHeader(String destAddress, byte priority, byte mode) {
@@ -35,7 +34,7 @@ public class ScpHeader implements Serializable {
             setPriorityMode((byte) (priority | mode));
             setTimestamp(System.currentTimeMillis());
             setSsid(new Random().nextLong());
-            setHMAC(new Random().nextLong());
+            setHMAC((new byte[]{12,43,56,78,-2,34,56}).hashCode());
         } catch (UnknownHostException e) {
             scplogger.severe(e.getLocalizedMessage());
         }
@@ -48,7 +47,7 @@ public class ScpHeader implements Serializable {
             setPriorityMode((byte) (priority | mode));
             setTimestamp(System.currentTimeMillis());
             setSsid(new Random().nextLong());
-            setHMAC(new Random().nextLong());
+            setHMAC((new byte[]{12,43,56,78,-2,34,56}).hashCode());
         } catch (Exception e) {
             scplogger.severe(e.getLocalizedMessage());
         }
@@ -122,7 +121,7 @@ public class ScpHeader implements Serializable {
         return HMAC;
     }
 
-    public void setHMAC(long HMAC) {
+    public void setHMAC(int HMAC) {
         this.HMAC = HMAC;
     }
 
@@ -141,8 +140,9 @@ public class ScpHeader implements Serializable {
         byte[] ssidBytes = Longs.toByteArray(getSsid());
         byte[] timestampBytes = Longs.toByteArray(getTimestamp());
         byte[] hmacBytes = Ints.toByteArray((int) getHMAC());
-        head = Util.addByteArrays(head,getSrcAddress(), getDestAddress(), ssidBytes, new byte[]{getPriorityMode()},
-                timestampBytes,hmacBytes, new byte[]{padding,payloadLength,scpUnitCount});
+        head = Util.addByteArrays(head, new byte[]{getPriorityMode(),payloadLength, (byte)(padding | scpUnitCount)},
+                getSrcAddress(), getDestAddress(), ssidBytes,
+                timestampBytes,hmacBytes);
         scplogger.info(" Length header = "+ head.length);
         return head;
     }

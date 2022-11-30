@@ -1,6 +1,5 @@
 package com.sgs.sos.scp;
 
-import com.sun.xml.internal.ws.api.message.Header;
 
 import java.io.Serializable;
 
@@ -18,7 +17,7 @@ public class ScpData implements Serializable {
 
     public void initData()
     {
-        header.setHMAC(454845184786l);
+        header.setHMAC(45484518);
     }
     public ScpData getScpData()
     {
