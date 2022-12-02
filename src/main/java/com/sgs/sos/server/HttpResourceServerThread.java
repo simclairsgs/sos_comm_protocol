@@ -1,6 +1,7 @@
 package com.sgs.sos.server;
 
 import com.sgs.sos.common.ScpLogger;
+import com.sgs.sos.test.TestMain;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,6 +29,17 @@ public class HttpResourceServerThread implements Runnable{
             String reqData= br.readLine().split(" ")[1];
             scplogger.info(" Web Req received :"+reqData);
             String fileName= "/index.html";
+            if(reqData.equals("/test"))
+            {
+                TestMain.test();
+                printWriter.println("HTTP/1.1 200 OK");							// set HTTP - Headers
+                printWriter.println("Content-Type: text/html");
+                printWriter.println("Content-Length: " + new File("src/main/webapp/"+fileName).length());
+                printWriter.println("\r\n");
+                printWriter.println("<html> Ok Success </html>");
+                printWriter.close();
+                return;
+            }
             if(reqData.equals("/"));
             else fileName = reqData;
             try {

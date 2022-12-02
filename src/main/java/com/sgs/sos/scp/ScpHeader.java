@@ -9,12 +9,13 @@ import com.sgs.sos.common.Util;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Logger;
 
 public class ScpHeader implements Serializable {
 
-    Logger scplogger = ScpLogger.getScpLogger();
+    static Logger scplogger = ScpLogger.getScpLogger();
     private byte reserved = 0x3;
     private byte[] destAddress;
     private byte[] srcAddress;
@@ -25,6 +26,8 @@ public class ScpHeader implements Serializable {
     private byte priorityMode;
     private int HMAC;
     private byte scpUnitCount = 1;
+
+    private byte[] header;
 
     public ScpHeader(String destAddress, byte priority, byte mode) {
         try {
@@ -53,6 +56,10 @@ public class ScpHeader implements Serializable {
         }
     }
 
+    public ScpHeader() {
+
+    }
+
     public byte getReserved() {
         return reserved;
     }
@@ -66,7 +73,7 @@ public class ScpHeader implements Serializable {
     }
 
     public void setDestAddress(byte[] destAddress) {
-        this.destAddress = destAddress;
+        this.destAddress = destAddress.clone();
     }
 
     public byte[] getSrcAddress() {
@@ -74,7 +81,7 @@ public class ScpHeader implements Serializable {
     }
 
     public void setSrcAddress(byte[] srcAddress) {
-        srcAddress = srcAddress;
+        this.srcAddress = srcAddress.clone();
     }
 
     public byte getPayloadLength() {
@@ -133,6 +140,16 @@ public class ScpHeader implements Serializable {
         this.scpUnitCount = scpUnitCount;
     }
 
+
+    public void setHeader(byte[] header) {
+        this.header = header;
+    }
+
+    public byte[] getHeader(boolean isObj)
+    {
+        return this.header;
+    }
+
     public byte[] getHeader()
     {
         byte[] head = new byte[1];
@@ -143,8 +160,26 @@ public class ScpHeader implements Serializable {
         head = Util.addByteArrays(head, new byte[]{getPriorityMode(),payloadLength, (byte)(padding | scpUnitCount)},
                 hmacBytes, getSrcAddress(), getDestAddress(), ssidBytes,
                 timestampBytes);
-        scplogger.info(" Length header = "+ head.length);
+        scplogger.info(" Length header = "+ head.length+" HMAC="+getHMAC());
         return head;
+    }
+
+    public static ScpHeader parseScpHeader(byte[] data)
+    {
+        try
+        {
+            ScpHeader header = new ScpHeader();
+            header.setHeader(data);
+            header.setSrcAddress(Arrays.copyOfRange(data, 8, 12));
+            header.setDestAddress(Arrays.copyOfRange(data, 12, 16));
+            header.setHMAC(Util.formIntFromBytes(Arrays.copyOfRange(data, 4, 8)));
+            return header;
+        }
+        catch (Exception e)
+        {
+            scplogger.severe(" Exception in parsing ScpHeader "+e.getStackTrace());
+        }
+        return null;
     }
 
     /*

@@ -1,16 +1,18 @@
-Dec 02, 2022 8:01:59 PM com.sgs.sos.server.ServerMain$ServerThread run
+Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ServerMain$ServerThread run
 INFO: Web+Scp : Server Started listening on port 8080
-Dec 02, 2022 8:01:59 PM com.sgs.sos.server.ScpSocketHandler$UpstreamListener run
+Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ScpSocketHandler$UpstreamListener run
 INFO: Scp Listener started at port :8085
-Dec 02, 2022 8:01:59 PM com.sgs.sos.server.ScpSocketHandler$DownstreamResponder init
+Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ScpSocketHandler$DownstreamResponder init
 INFO: Scp-ds: D/S responder open at port : 8086
-Dec 02, 2022 8:01:59 PM com.sgs.sos.server.ServerMain$ServerThread run
+Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ServerMain$ServerThread run
 SEVERE: ------------------------- SERVER STARTED SUCCESSFULLY -------------------------------
-Dec 02, 2022 8:01:59 PM com.sgs.sos.scp.ScpHeader getHeader
-INFO:  Length header = 32
-Dec 02, 2022 8:01:59 PM com.sgs.sos.io.ScpInputHandler <init>
-INFO: REQUEST_IN -> address_in=127.0.0.1:8086
-Dec 02, 2022 8:01:59 PM com.sgs.sos.io.ScpInputHandler <init>
-INFO: Data : [3, 3, 1, 1, 9, -128, 116, 84, -64, -88, 0, 109, 127, 0, 0, 1, 65, -7, 116, 104, -12, -17, -84, -115, 0, 0, 1, -124, -45, 64, 83, 109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-Dec 02, 2022 8:01:59 PM com.sgs.sos.server.ScpSocketHandler$DownstreamResponder sendResponse
+Dec 02, 2022 11:17:02 PM com.sgs.sos.scp.ScpHeader getHeader
+INFO:  Length header = 32 HMAC=159413332
+Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ScpSocketHandler$DownstreamResponder sendResponse
 INFO: DATA_OUT -> destination=127.0.0.1:8085
+Dec 02, 2022 11:17:02 PM com.sgs.sos.io.ScpInputHandler <init>
+INFO: REQUEST_IN -> address_in=127.0.0.1:8086
+Dec 02, 2022 11:17:02 PM com.sgs.sos.io.ScpInputHandler <init>
+INFO: Data : [3, 3, 1, 1, 9, -128, 116, 84, -64, -88, 0, 109, 127, 0, 0, 1, 31, -20, 109, -37, 1, 110, 92, 58, 0, 0, 1, -124, -45, -14, -23, 120, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Dec 02, 2022 11:17:02 PM com.sgs.sos.io.ScpInputHandler <init>
+INFO: hmac = 159413332 src=192.168.0.109 Dest=127.0.0.1

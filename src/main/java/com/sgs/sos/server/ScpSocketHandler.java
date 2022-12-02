@@ -64,15 +64,19 @@ public class ScpSocketHandler
                 byte buffer[] = new byte[256];
                 DatagramPacket packet  = new DatagramPacket(buffer,256);
                 scplogger.info("Scp Listener started at port :"+UPSTREAM_PORT);
-                socket.receive(packet);
-                InetAddress address = packet.getAddress();
-                int port = packet.getPort();
-                ScpInputHandler wcpin = new ScpInputHandler(address, port, buffer);
-                wcpin.process();
-                wcpin = null;
+               boolean stayalive = true;
+                while(stayalive)
+                {
+                    socket.receive(packet);
+                    InetAddress address = packet.getAddress();
+                    int port = packet.getPort();
+                    ScpInputHandler wcpin = new ScpInputHandler(address, port, buffer);
+                    wcpin.process();
+                }
                 socket.close();
             } catch (Exception e) {
-                scplogger.severe(e.getLocalizedMessage());
+                e.printStackTrace();
+                scplogger.severe(" U/S Listener"+ e.getMessage());
             }
         }
     }

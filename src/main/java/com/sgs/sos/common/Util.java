@@ -2,10 +2,23 @@ package com.sgs.sos.common;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class Util {
+
+    public static void print(Object o)
+    {
+       System.out.println(o);
+    }
+
+    public static String byteArrayToIpString(byte[] ip) throws UnknownHostException {
+        print(Arrays.toString(ip));
+        return (InetAddress.getByAddress(ip)).getHostAddress();
+    }
 
     public static void printByteArray(byte[] b)
     {
@@ -35,5 +48,9 @@ public class Util {
             b = ArrayUtils.addAll(b,e);
         }
         return b;
+    }
+
+    public static int formIntFromBytes(byte[] bytes) {
+        return bytes[0] << 24 | (bytes[1] & 0xFF) << 16 | (bytes[2] & 0xFF) << 8 | (bytes[3] & 0xFF);
     }
 }
