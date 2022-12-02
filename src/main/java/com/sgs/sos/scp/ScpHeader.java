@@ -141,9 +141,24 @@ public class ScpHeader implements Serializable {
         byte[] timestampBytes = Longs.toByteArray(getTimestamp());
         byte[] hmacBytes = Ints.toByteArray((int) getHMAC());
         head = Util.addByteArrays(head, new byte[]{getPriorityMode(),payloadLength, (byte)(padding | scpUnitCount)},
-                getSrcAddress(), getDestAddress(), ssidBytes,
-                timestampBytes,hmacBytes);
+                hmacBytes, getSrcAddress(), getDestAddress(), ssidBytes,
+                timestampBytes);
         scplogger.info(" Length header = "+ head.length);
         return head;
     }
+
+    /*
+                                            SCP HEADER FORMAT - 32 bytes
+
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    | Reserved | priority | length | padding|scpCount |                   HMAC  4 bytes               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |  source address  4 byte                         |               destination address 4 byte      |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                       Timestamp   8 bytes                                       |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                      Source Sync ID 8 bytes                                     |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+    * */
 }

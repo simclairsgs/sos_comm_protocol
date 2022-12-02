@@ -24,6 +24,7 @@ public class ServerMain {
                 ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
                 ServerSocket serverSocket = new ServerSocket(SERVER_PORT);				// listen to port 80800
                 scplogger.info("Web+Scp : Server Started listening on port "+ SERVER_PORT);
+                scplogger.severe("------------------------- SERVER STARTED SUCCESSFULLY -------------------------------");
                 while(true) {
                     Socket socket = serverSocket.accept();						// client
                     executor.execute(new HttpResourceServerThread(socket));			// serve client

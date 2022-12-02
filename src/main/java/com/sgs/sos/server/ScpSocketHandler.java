@@ -12,7 +12,7 @@ public class ScpSocketHandler
     static Logger scplogger = ScpLogger.getScpLogger();
     static UpstreamListener upstreamListener;
 
-    static class DownstreamResponder
+    public static class DownstreamResponder
     {
         static int DOWNSTREAM_PORT = 8086;
         static DatagramSocket socket;
@@ -28,13 +28,14 @@ public class ScpSocketHandler
                 scplogger.info("Scp-ds: D/S responder open at port : "+DOWNSTREAM_PORT);
         }
 
-        static void sendResponse(InetAddress destination, int port, byte[] data) {
+        public static void sendResponse(InetAddress destination, int port, byte[] data) {
             try {
                 socket.connect(new InetSocketAddress(destination,port));
                 byte buffer[] = new byte[256];
                 System.arraycopy(data, 0, buffer, 0, data.length);
                 DatagramPacket packet  = new DatagramPacket(buffer,256);
                 socket.send(packet);
+                scplogger.info("DATA_OUT -> destination="+destination.getHostAddress()+":"+port);
                 socket.disconnect();
 
             } catch (SocketException e) {
@@ -44,14 +45,14 @@ public class ScpSocketHandler
             }
         }
 
-        static void close()
+        public static void close()
         {
             if(socket != null)
                 socket.close();
         }
     }
 
-    static class UpstreamListener extends Thread
+    public static class UpstreamListener extends Thread
     {
         static int UPSTREAM_PORT = 8085;
 
