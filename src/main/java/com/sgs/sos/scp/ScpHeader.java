@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.logging.Logger;
 
 public class ScpHeader implements Serializable {
@@ -19,13 +18,13 @@ public class ScpHeader implements Serializable {
     private byte reserved = 0x3;
     private byte[] destAddress;
     private byte[] srcAddress;
-    private byte payloadLength = 1;
+    private byte payloadLength = 0;
     private long timestamp;
     private long ssid;
     private byte padding = 0;
     private byte priorityMode;
     private int HMAC;
-    private byte scpUnitCount = 1;
+    private byte scpUnitCount = 0;
 
     private byte[] header;
 
@@ -36,8 +35,7 @@ public class ScpHeader implements Serializable {
             srcAddress = (AppConf.getIpAddressAsBytes().clone());
             setPriorityMode((byte) (priority | mode));
             setTimestamp(System.currentTimeMillis());
-            setSsid(new Random().nextLong());
-            setHMAC((new byte[]{12,43,56,78,-2,34,56}).hashCode());
+            setSsid(Util.generateSsid());
         } catch (UnknownHostException e) {
             scplogger.severe(e.getLocalizedMessage());
         }
@@ -49,8 +47,7 @@ public class ScpHeader implements Serializable {
             srcAddress = (AppConf.getIpAddressAsBytes().clone());
             setPriorityMode((byte) (priority | mode));
             setTimestamp(System.currentTimeMillis());
-            setSsid(new Random().nextLong());
-            setHMAC((new byte[]{12,43,56,78,-2,34,56}).hashCode());
+            setSsid(Util.generateSsid());
         } catch (Exception e) {
             scplogger.severe(e.getLocalizedMessage());
         }
@@ -150,6 +147,28 @@ public class ScpHeader implements Serializable {
         return this.header;
     }
 
+    public void incrementScpUnitCount()
+    {
+        this.scpUnitCount++;
+    }
+
+    @Override
+    public String toString() {
+        return "ScpHeader{" +
+                "reserved=" + reserved +
+                ", destAddress=" + Arrays.toString(destAddress) +
+                ", srcAddress=" + Arrays.toString(srcAddress) +
+                ", payloadLength=" + payloadLength +
+                ", timestamp=" + timestamp +
+                ", ssid=" + ssid +
+                ", padding=" + padding +
+                ", priorityMode=" + priorityMode +
+                ", HMAC=" + HMAC +
+                ", scpUnitCount=" + scpUnitCount +
+                ", header=" + Arrays.toString(header) +
+                '}';
+    }
+
     public byte[] getHeader()
     {
         byte[] head = new byte[1];
@@ -158,9 +177,8 @@ public class ScpHeader implements Serializable {
         byte[] timestampBytes = Longs.toByteArray(getTimestamp());
         byte[] hmacBytes = Ints.toByteArray((int) getHMAC());
         head = Util.addByteArrays(head, new byte[]{getPriorityMode(),payloadLength, (byte)(padding | scpUnitCount)},
-                hmacBytes, getSrcAddress(), getDestAddress(), ssidBytes,
-                timestampBytes);
-        scplogger.info(" Length header = "+ head.length+" HMAC="+getHMAC());
+                hmacBytes, getSrcAddress(), getDestAddress(), timestampBytes, ssidBytes);
+        setHeader(head);
         return head;
     }
 
@@ -172,7 +190,14 @@ public class ScpHeader implements Serializable {
             header.setHeader(data);
             header.setSrcAddress(Arrays.copyOfRange(data, 8, 12));
             header.setDestAddress(Arrays.copyOfRange(data, 12, 16));
-            header.setHMAC(Util.formIntFromBytes(Arrays.copyOfRange(data, 4, 8)));
+            header.setHMAC(Util.bytesToInt(Arrays.copyOfRange(data, 4, 8)));
+            header.setPriorityMode(data[1]);
+            header.setReserved(data[0]);
+            header.setPayloadLength(data[2]);
+            header.setPadding((byte)((data[3] & 0xF0)>>4));
+            header.setScpUnitCount((byte)(data[3] & 0xF));
+            header.setTimestamp(Util.bytesToLong(Arrays.copyOfRange(data,16,24)));
+            header.setSsid(Util.bytesToLong(Arrays.copyOfRange(data,24,32)));
             return header;
         }
         catch (Exception e)

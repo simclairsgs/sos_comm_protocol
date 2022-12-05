@@ -1,18 +1,18 @@
-Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ServerMain$ServerThread run
+Dec 05, 2022 11:27:10 PM com.sgs.sos.server.ServerMain$ServerThread run
 INFO: Web+Scp : Server Started listening on port 8080
-Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ScpSocketHandler$UpstreamListener run
-INFO: Scp Listener started at port :8085
-Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ScpSocketHandler$DownstreamResponder init
+Dec 05, 2022 11:27:10 PM com.sgs.sos.server.ScpSocketHandler$DownstreamResponder init
 INFO: Scp-ds: D/S responder open at port : 8086
-Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ServerMain$ServerThread run
+Dec 05, 2022 11:27:10 PM com.sgs.sos.server.ScpSocketHandler$UpstreamListener run
+INFO: Scp Listener started at port :8085
+Dec 05, 2022 11:27:10 PM com.sgs.sos.server.ServerMain$ServerThread run
 SEVERE: ------------------------- SERVER STARTED SUCCESSFULLY -------------------------------
-Dec 02, 2022 11:17:02 PM com.sgs.sos.scp.ScpHeader getHeader
-INFO:  Length header = 32 HMAC=159413332
-Dec 02, 2022 11:17:02 PM com.sgs.sos.server.ScpSocketHandler$DownstreamResponder sendResponse
-INFO: DATA_OUT -> destination=127.0.0.1:8085
-Dec 02, 2022 11:17:02 PM com.sgs.sos.io.ScpInputHandler <init>
-INFO: REQUEST_IN -> address_in=127.0.0.1:8086
-Dec 02, 2022 11:17:02 PM com.sgs.sos.io.ScpInputHandler <init>
-INFO: Data : [3, 3, 1, 1, 9, -128, 116, 84, -64, -88, 0, 109, 127, 0, 0, 1, 31, -20, 109, -37, 1, 110, 92, 58, 0, 0, 1, -124, -45, -14, -23, 120, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-Dec 02, 2022 11:17:02 PM com.sgs.sos.io.ScpInputHandler <init>
-INFO: hmac = 159413332 src=192.168.0.109 Dest=127.0.0.1
+Dec 05, 2022 11:27:10 PM com.sgs.sos.test.TestMain test
+INFO: IP address : 192.168.0.109
+Dec 05, 2022 11:27:10 PM com.sgs.sos.test.TestMain test
+SEVERE: ScpData{header=ScpHeader{reserved=3, destAddress=[127, 0, 0, 1], srcAddress=[-64, -88, 0, 109], payloadLength=37, timestamp=1670263030570, ssid=1378024708731767725, padding=0, priorityMode=3, HMAC=-1969254824, scpUnitCount=3, header=[3, 3, 37, 3, -118, -97, -114, 88, -64, -88, 0, 109, 127, 0, 0, 1, 0, 0, 1, -124, -29, 111, 67, 42, 19, 31, -70, 43, -25, -85, 11, -83]}, messageUnits=[ScpMessageUnit{message=[84, 101, 115, 116], length=4, type=1}, ScpMessageUnit{message=[72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100], length=11, type=5}, ScpMessageUnit{message=[84, 101, 115, 116, 32, 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100], length=16, type=5}], scpData=[3, 3, 37, 3, -118, -97, -114, 88, -64, -88, 0, 109, 127, 0, 0, 1, 0, 0, 1, -124, -29, 111, 67, 42, 19, 31, -70, 43, -25, -85, 11, -83, 1, 4, 84, 101, 115, 116, 5, 11, 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 5, 16, 84, 101, 115, 116, 32, 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100], payload=[1, 4, 84, 101, 115, 116, 5, 11, 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 5, 16, 84, 101, 115, 116, 32, 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]}
+Dec 05, 2022 11:27:10 PM com.sgs.sos.io.ScpInputHandler <init>
+INFO: REQUEST_IN -> address_in=192.168.0.109:8086
+Dec 05, 2022 11:27:10 PM com.sgs.sos.io.ScpInputHandler <init>
+INFO: ScpData{header=ScpHeader{reserved=3, destAddress=[127, 0, 0, 1], srcAddress=[-64, -88, 0, 109], payloadLength=37, timestamp=1670263030570, ssid=1378024708731767725, padding=0, priorityMode=3, HMAC=-1969254824, scpUnitCount=3, header=[3, 3, 37, 3, -118, -97, -114, 88, -64, -88, 0, 109, 127, 0, 0, 1, 0, 0, 1, -124, -29, 111, 67, 42, 19, 31, -70, 43, -25, -85, 11, -83]}, messageUnits=[], scpData=null, payload=[1, 4, 84, 101, 115, 116, 5, 11, 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 5, 16, 84, 101, 115, 116, 32, 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]}
+Dec 05, 2022 11:27:10 PM com.sgs.sos.server.ScpSocketHandler$DownstreamResponder sendResponse
+INFO: DATA_OUT -> destination=192.168.0.109:8085
