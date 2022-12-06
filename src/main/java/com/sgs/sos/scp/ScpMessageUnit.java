@@ -53,23 +53,6 @@ public class ScpMessageUnit {
         return Util.addBytesToArray(msg, this.message);
     }
 
-    public static ScpMessageUnit parseMessageUnit(byte[] data)
-    {
-        try
-        {
-            ScpMessageUnit msgUnit = new ScpMessageUnit();
-            msgUnit.setMessageType(data[0]);
-            msgUnit.setLength(data[1]);
-            msgUnit.setMessage(Arrays.copyOfRange(data,2,data.length));
-            return msgUnit;
-        }
-        catch (Exception e)
-        {
-            scplogger.severe("Exception in MsgUnitParsing " + e.getMessage());
-        }
-        return null;
-    }
-
     @Override
     public String toString() {
         return "ScpMessageUnit{" +

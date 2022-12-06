@@ -9,7 +9,7 @@ public class AppConf {
     private static String ipAddress;
     private static byte[] ipAddressBytes;
     private static int US_SERVER_PORT = 8085;
-    private static int DS_SERVER_PORT = 8085;
+    private static int DS_SERVER_PORT = 8086;
     private static int HTTP_SERVER_PORT = 8080;
     private static int BUFFER_SIZE = 256;
 

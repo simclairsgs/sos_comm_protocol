@@ -1,7 +1,7 @@
 package com.sgs.sos.test;
 
 import com.sgs.sos.common.AppConf;
-import com.sgs.sos.common.ScpConstants;
+import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.scp.ScpData;
 import com.sgs.sos.scp.ScpMessageUnit;

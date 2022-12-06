@@ -1,4 +1,4 @@
-package com.sgs.sos.common;
+package com.sgs.sos.scp;
 
 public class ScpConstants {
     //MessageType

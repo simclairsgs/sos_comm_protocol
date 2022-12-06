@@ -12,7 +12,7 @@ public class ScpInputHandler {
 
     private static Logger scplogger = ScpLogger.getScpLogger();
 
-    public ScpInputHandler(InetAddress clientAddress, int port , byte[] rawdata)
+    public static void handle(InetAddress clientAddress, int port , byte[] rawdata)
     {
         try
         {
@@ -20,15 +20,15 @@ public class ScpInputHandler {
             rawdata = Util.removeTrailingZeros(rawdata);
             ScpData scpData = ScpParser.parseScpData(rawdata);
             scplogger.info(scpData.toString());
+            process(scpData);
         }
         catch (Exception e)
         {
             scplogger.severe(e.getMessage());
         }
     }
-
-    public void process()
+    public static void process(ScpData scpData)
     {
-
+        ScpProcessor.addProcess(scpData);
     }
 }

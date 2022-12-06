@@ -72,8 +72,7 @@ public class ScpSocketHandler
                     socket.receive(packet);
                     InetAddress address = packet.getAddress();
                     int port = packet.getPort();
-                    ScpInputHandler wcpin = new ScpInputHandler(address, port, buffer);
-                    wcpin.process();
+                    ScpInputHandler.handle(address, port, buffer);
                 }
                 socket.close();
             } catch (Exception e) {

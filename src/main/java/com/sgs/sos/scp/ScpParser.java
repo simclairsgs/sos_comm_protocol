@@ -35,7 +35,7 @@ public class ScpParser
         try {
             for (int i = 0; i < scpData.getHeader().getScpUnitCount(); i++) {
                 mLength = scpData.getPayload()[pos + 1] + 2;
-                ScpMessageUnit msg = ScpMessageUnit.parseMessageUnit(Arrays.copyOfRange(scpData.getPayload(), pos, pos + mLength));
+                ScpMessageUnit msg = ScpParser.parseMessageUnit(Arrays.copyOfRange(scpData.getPayload(), pos, pos + mLength));
                 scpData.addMessage(msg);
                 pos += mLength;
             }
@@ -43,5 +43,22 @@ public class ScpParser
         } catch (Exception e) {
             scplogger.info("Exception in parsing messageUnits | " + e.getMessage());
         }
+    }
+
+    public static ScpMessageUnit parseMessageUnit(byte[] data)
+    {
+        try
+        {
+            ScpMessageUnit msgUnit = new ScpMessageUnit();
+            msgUnit.setMessageType(data[0]);
+            msgUnit.setLength(data[1]);
+            msgUnit.setMessage(Arrays.copyOfRange(data,2,data.length));
+            return msgUnit;
+        }
+        catch (Exception e)
+        {
+            scplogger.severe("Exception in MsgUnitParsing " + e.getMessage());
+        }
+        return null;
     }
 }
