@@ -1,5 +1,6 @@
 package com.sgs.sos.server;
 
+import com.sgs.sos.common.AppConf;
 import com.sgs.sos.common.ScpLogger;
 
 import java.net.ServerSocket;
@@ -15,7 +16,7 @@ public class ServerMain {
 
     static class ServerThread extends Thread
     {
-        public static int SERVER_PORT = 8080;
+        public static int SERVER_PORT = AppConf.getHttpServerPort();
 
         @Override
         public void run()

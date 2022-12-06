@@ -11,7 +11,7 @@ public class ScpMessageUnit {
     private byte[] message;
     private byte length;
     public byte messageType;
-    Logger scplogger = ScpLogger.getScpLogger();
+    static Logger scplogger = ScpLogger.getScpLogger();
 
     public ScpMessageUnit() {
 
@@ -53,14 +53,14 @@ public class ScpMessageUnit {
         return Util.addBytesToArray(msg, this.message);
     }
 
-    public ScpMessageUnit parseMessageUnit(byte[] data)
+    public static ScpMessageUnit parseMessageUnit(byte[] data)
     {
         try
         {
             ScpMessageUnit msgUnit = new ScpMessageUnit();
             msgUnit.setMessageType(data[0]);
             msgUnit.setLength(data[1]);
-            msgUnit.setMessage(Arrays.copyOfRange(data,2,data.length-2));
+            msgUnit.setMessage(Arrays.copyOfRange(data,2,data.length));
             return msgUnit;
         }
         catch (Exception e)

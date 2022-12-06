@@ -1,11 +1,11 @@
 package com.sgs.sos.io;
 
 import com.sgs.sos.common.ScpLogger;
+import com.sgs.sos.common.Util;
 import com.sgs.sos.scp.ScpData;
-import com.sgs.sos.scp.ScpHeader;
+import com.sgs.sos.scp.ScpParser;
 
 import java.net.InetAddress;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class ScpInputHandler {
@@ -17,7 +17,8 @@ public class ScpInputHandler {
         try
         {
             scplogger.info("REQUEST_IN -> address_in=" + (clientAddress.getHostAddress()) + ":" + port);
-            ScpData scpData = ScpData.parseScpData(rawdata);
+            rawdata = Util.removeTrailingZeros(rawdata);
+            ScpData scpData = ScpParser.parseScpData(rawdata);
             scplogger.info(scpData.toString());
         }
         catch (Exception e)

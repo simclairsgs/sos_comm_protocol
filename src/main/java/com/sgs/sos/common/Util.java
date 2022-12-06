@@ -35,6 +35,21 @@ public class Util {
         return (int)(dat.getValue());
     }
 
+    public static byte[] removeTrailingZeros(byte[] data)
+    {
+        if(data[2]==0)
+        {
+            int i = data.length - 1;
+            while(data[i] == 0)
+            {
+                --i;
+            }
+            return Arrays.copyOfRange(data,0, i+1);
+        }
+        int len = data[2];
+        return Arrays.copyOfRange(data,0,32+len);
+    }
+
 
     public static void printByteArray(byte[] b)
     {

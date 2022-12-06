@@ -67,7 +67,7 @@ public class ScpData implements Serializable {
     }
 
     public void setScpData(byte[] scpData) {
-        this.scpData = scpData;
+        this.scpData = scpData.clone();
     }
 
     public byte[] getPayload() {
@@ -86,39 +86,5 @@ public class ScpData implements Serializable {
                 ", scpData=" + Arrays.toString(scpData) +
                 ", payload=" + Arrays.toString(payload) +
                 '}';
-    }
-
-    public static ScpData parseScpData(byte[] data)
-    {
-        ScpData scpData = new ScpData();
-        scpData.header = ScpHeader.parseScpHeader(Arrays.copyOfRange(data,0,32));
-        scpData.setPayload(Arrays.copyOfRange(data,32,32+scpData.header.getPayloadLength()));
-        scpData.parseMessageUnits();
-        return scpData;
-    }
-
-    private void parseMessageUnits() {
-        Util.print(Arrays.toString(payload));
-        messageUnits = new LinkedList<ScpMessageUnit>();
-        if(payload.length<2)
-        {
-            return;
-        }
-        int pos = 0, mLength = 0;
-        try
-        {
-            for(int i=0; i< header.getScpUnitCount(); i++)
-            {
-                 mLength = payload[pos+1] + 2;
-                 Util.print(Arrays.toString(Arrays.copyOfRange(payload,pos,pos+mLength)));
-                 Util.print(pos+"-"+mLength);
-                 pos += mLength;
-            }
-
-        }
-        catch (Exception e)
-        {
-            scplogger.info("Exception in parsing messageUnits | "+e.getMessage());
-        }
     }
 }
