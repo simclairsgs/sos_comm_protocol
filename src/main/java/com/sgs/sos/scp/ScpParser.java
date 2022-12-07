@@ -41,7 +41,7 @@ public class ScpParser
             }
 
         } catch (Exception e) {
-            scplogger.info("Exception in parsing messageUnits | " + e.getMessage());
+            scplogger.severe("Exception in parsing messageUnits | " + e.getMessage());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.sgs.sos.test;
 
 import com.sgs.sos.common.AppConf;
+import com.sgs.sos.common.Util;
 import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.scp.ScpData;
@@ -14,7 +15,7 @@ public class TestMain {
     public static void test()
     {
         Logger scplogger = ScpLogger.getScpLogger();
-        scplogger.info("IP address : " + AppConf.getIpAddress());
+        scplogger.fine("Current Local IP address : " + AppConf.getIpAddress());
        /* ScpHeader header = new ScpHeader("127.0.0.1", (byte) 0x1, (byte) 0x2);
         byte data[] = header.getHeader();
         InetAddress address = new InetSocketAddress("127.0.0.1",8085).getAddress();
@@ -32,7 +33,7 @@ public class TestMain {
             scpData.addMessage(m2);
             scpData.addMessage(m3);
             byte[] data = scpData.getScpDataArray();
-            scplogger.severe(scpData.toString());
+            scplogger.info((scpData.toString()));
             ScpSocketHandler.DownstreamResponder.sendResponse(InetAddress.getByName("192.168.0.109"), 8085, data);
 
         } catch (Exception e)

@@ -13,6 +13,25 @@ public class AppConf {
     private static int HTTP_SERVER_PORT = 8080;
     private static int BUFFER_SIZE = 256;
 
+    private static String KEY_LOCATION = "src/main/resources/keys/";
+    private static String WEBAPP_LOCATION = "src/main/webapp/";
+
+    public static String getKeyLocation() {
+        return KEY_LOCATION;
+    }
+
+    public static void setKeyLocation(String keyLocation) {
+        KEY_LOCATION = keyLocation;
+    }
+
+    public static String getWebappLocation() {
+        return WEBAPP_LOCATION;
+    }
+
+    public static void setWebappLocation(String webappLocation) {
+        WEBAPP_LOCATION = webappLocation;
+    }
+
     public static int getBufferSize() {
         return BUFFER_SIZE;
     }
