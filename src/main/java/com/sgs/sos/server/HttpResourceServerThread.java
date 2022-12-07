@@ -1,5 +1,6 @@
 package com.sgs.sos.server;
 
+import com.sgs.sos.common.AppConf;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.test.TestMain;
 
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
 
 public class HttpResourceServerThread implements Runnable{
     private final Socket socket;
+    private final String LOCATION = AppConf.getWebappLocation();
 
     HttpResourceServerThread(Socket socket){								// receiver socket from main thread
         this.socket = socket;
@@ -34,7 +36,7 @@ public class HttpResourceServerThread implements Runnable{
                 TestMain.test();
                 printWriter.println("HTTP/1.1 200 OK");							// set HTTP - Headers
                 printWriter.println("Content-Type: text/html");
-                printWriter.println("Content-Length: " + new File("src/main/webapp/"+fileName).length());
+                printWriter.println("Content-Length: " + new File(LOCATION+fileName).length());
                 printWriter.println("\r\n");
                 printWriter.println("<html> Ok Success </html>");
                 printWriter.close();
@@ -43,11 +45,11 @@ public class HttpResourceServerThread implements Runnable{
             if(reqData.equals("/"));
             else fileName = reqData;
             try {
-                FileReader file = new FileReader("src/main/webapp"+fileName);
+                FileReader file = new FileReader(LOCATION+fileName);
                 BufferedReader bfr = new BufferedReader(file);
                 printWriter.println("HTTP/1.1 200 OK");							// set HTTP - Headers
                 printWriter.println("Content-Type: text/html");
-                printWriter.println("Content-Length: " + new File("src/main/webapp/"+fileName).length());
+                printWriter.println("Content-Length: " + new File(LOCATION+fileName).length());
                 printWriter.println("\r\n");
                 String line = bfr.readLine();
                 while (line != null)
