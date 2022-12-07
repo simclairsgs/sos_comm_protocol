@@ -16,10 +16,10 @@ public class ScpInputHandler {
     {
         try
         {
-            scplogger.info("REQUEST_IN -> address_in=" + (clientAddress.getHostAddress()) + ":" + port);
+            scplogger.info(("REQUEST_IN -> address_in=" + (clientAddress.getHostAddress()) + ":" + port));
             rawdata = Util.removeTrailingZeros(rawdata);
             ScpData scpData = ScpParser.parseScpData(rawdata);
-            scplogger.info(scpData.toString());
+            scplogger.info((scpData.toString()));
             process(scpData);
         }
         catch (Exception e)

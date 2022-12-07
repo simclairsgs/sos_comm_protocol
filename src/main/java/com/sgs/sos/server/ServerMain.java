@@ -2,6 +2,7 @@ package com.sgs.sos.server;
 
 import com.sgs.sos.common.AppConf;
 import com.sgs.sos.common.ScpLogger;
+import com.sgs.sos.common.Util;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,8 +25,8 @@ public class ServerMain {
             try {
                 ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
                 ServerSocket serverSocket = new ServerSocket(SERVER_PORT);				// listen to port 80800
-                scplogger.info("Web+Scp : Server Started listening on port "+ SERVER_PORT);
-                scplogger.severe("------------------------- SERVER STARTED SUCCESSFULLY -------------------------------");
+                scplogger.config(("Web+Scp : Server Started listening on port "+ SERVER_PORT));
+                scplogger.config(("------------------------- SERVER STARTED SUCCESSFULLY -------------------------------"));
                 while(true) {
                     Socket socket = serverSocket.accept();						// client
                     executor.execute(new HttpResourceServerThread(socket));			// serve client

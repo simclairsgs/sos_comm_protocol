@@ -24,7 +24,7 @@ public class CryptoManager
             out = new FileOutputStream(AppConf.getKeyLocation() + "rsa1024.pub");
             out.write(publicKey.getEncoded());
             out.close();
-            ScpLogger.getScpLogger().info("crypto Key generated \n" + privateKey.toString());
+            ScpLogger.getScpLogger().config(("crypto Key generated"));
         }
         catch (Exception e)
         {

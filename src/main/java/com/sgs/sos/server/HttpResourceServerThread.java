@@ -2,6 +2,7 @@ package com.sgs.sos.server;
 
 import com.sgs.sos.common.AppConf;
 import com.sgs.sos.common.ScpLogger;
+import com.sgs.sos.common.Util;
 import com.sgs.sos.test.TestMain;
 
 import java.io.BufferedReader;
@@ -29,7 +30,7 @@ public class HttpResourceServerThread implements Runnable{
             BufferedReader br = new BufferedReader(bir);
             PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
             String reqData= br.readLine().split(" ")[1];
-            scplogger.info(" Web Req received :"+reqData);
+            scplogger.info((" Web Req received :"+reqData));
             String fileName= "/index.html";
             if(reqData.equals("/test"))
             {

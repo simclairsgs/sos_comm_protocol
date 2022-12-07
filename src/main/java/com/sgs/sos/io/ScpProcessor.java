@@ -1,6 +1,7 @@
 package com.sgs.sos.io;
 
 import com.sgs.sos.common.ScpLogger;
+import com.sgs.sos.common.Util;
 import com.sgs.sos.scp.ScpData;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -23,7 +24,7 @@ public class ScpProcessor {
             return;
         }
         ScpData data = queue.remove();
-        scplogger.info("Processing ScpData => ssid="+data.getHeader().getSsid());
+        scplogger.info(("Processing ScpData => ssid="+data.getHeader().getSsid()));
 
         try
         {

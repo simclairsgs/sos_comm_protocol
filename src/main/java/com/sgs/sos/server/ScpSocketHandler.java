@@ -2,6 +2,7 @@ package com.sgs.sos.server;
 
 import com.sgs.sos.common.AppConf;
 import com.sgs.sos.common.ScpLogger;
+import com.sgs.sos.common.Util;
 import com.sgs.sos.io.ScpInputHandler;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class ScpSocketHandler
                scplogger.severe(e.getMessage());
             }
             if(!socket.isClosed())
-                scplogger.info("Scp-ds: D/S responder open at port : "+DOWNSTREAM_PORT);
+                scplogger.config(("Scp-ds: D/S responder open at port : "+DOWNSTREAM_PORT));
         }
 
         public static void sendResponse(InetAddress destination, int port, byte[] data) {
@@ -37,7 +38,7 @@ public class ScpSocketHandler
                 System.arraycopy(data, 0, buffer, 0, data.length);
                 DatagramPacket packet  = new DatagramPacket(buffer,BUFFER_SIZE);
                 socket.send(packet);
-                scplogger.info("DATA_OUT -> destination="+destination.getHostAddress()+":"+port);
+                scplogger.info(("DATA_OUT -> destination="+destination.getHostAddress()+":"+port));
                 socket.disconnect();
 
             } catch (SocketException e) {
@@ -65,7 +66,7 @@ public class ScpSocketHandler
                 DatagramSocket socket = new DatagramSocket(UPSTREAM_PORT);
                 byte buffer[] = new byte[BUFFER_SIZE];
                 DatagramPacket packet  = new DatagramPacket(buffer,BUFFER_SIZE);
-                scplogger.info("Scp Listener started at port :"+UPSTREAM_PORT);
+                scplogger.config(("Scp Listener started at port :"+UPSTREAM_PORT));
                boolean stayalive = true;
                 while(stayalive)
                 {
