@@ -43,7 +43,7 @@ public class ScpHeader implements Serializable {
             InetAddress ip = InetAddress.getByName(destAddress);
             setDestAddress(ip.getAddress());
             srcAddress = (AppConf.getIpAddressAsBytes().clone());
-            setPriorityMode((byte) (priority | mode));
+            setPriorityMode((byte) (priority<<4 | mode));
             setTimestamp(System.currentTimeMillis());
             setSsid(Util.generateSsid());
         } catch (UnknownHostException e) {
@@ -55,7 +55,7 @@ public class ScpHeader implements Serializable {
         try {
             setDestAddress(destAddress);
             srcAddress = (AppConf.getIpAddressAsBytes().clone());
-            setPriorityMode((byte) (priority | mode));
+            setPriorityMode((byte) (priority<<4 | mode));
             setTimestamp(System.currentTimeMillis());
             setSsid(Util.generateSsid());
         } catch (Exception e) {

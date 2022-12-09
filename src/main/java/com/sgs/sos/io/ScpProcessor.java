@@ -31,7 +31,7 @@ public class ScpProcessor {
         {
             if(data.getHeader().isPdu())
             {
-
+                Util.print("PDU IN"+ data.toString());
             }
         }
         catch (Exception e)

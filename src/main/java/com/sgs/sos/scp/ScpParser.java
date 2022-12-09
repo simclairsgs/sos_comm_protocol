@@ -43,7 +43,7 @@ public class ScpParser
             ScpData scpData = new ScpData();
             scpData.setScpData(data);
             scpData.setHeader(parseScpHeader(Arrays.copyOfRange(data, 0, 32)));
-            if(scpData.getHeader().isPdu() && data[32]==80)
+            if(scpData.getHeader().isPdu() && isValidPDU(data[32]))
             {
                 scpData.setPayload(Arrays.copyOfRange(data,32,data.length));
                 return parseScpPDU(scpData);
@@ -57,6 +57,10 @@ public class ScpParser
             scplogger.severe("Exception parsing scpData" + e.getMessage());
         }
         return null;
+    }
+
+    private static boolean isValidPDU(byte datum) {
+        return datum==ScpConstants.SRC_KEY || datum==ScpConstants.SCP_PDU;
     }
 
     public static ScpData parseScpPDU(ScpData scpData) {
