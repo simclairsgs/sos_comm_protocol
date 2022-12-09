@@ -1,5 +1,7 @@
 package com.sgs.sos.scp;
 
+import com.sgs.sos.common.Util;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -7,6 +9,32 @@ import static com.sgs.sos.scp.ScpHeader.scplogger;
 
 public class ScpParser
 {
+    public static ScpHeader parseScpHeader(byte[] data)
+    {
+        try
+        {
+            ScpHeader header = new ScpHeader();
+            header.setHeader(data);
+            header.setSrcAddress(Arrays.copyOfRange(data, 8, 12));
+            header.setDestAddress(Arrays.copyOfRange(data, 12, 16));
+            header.setHMAC(Util.bytesToInt(Arrays.copyOfRange(data, 4, 8)));
+            header.setPriorityMode(data[1]);
+            header.setReserved(data[0]);
+            header.setPayloadLength(data[2]);
+            header.setPadding((byte)((data[3] & 0xF0)>>4));
+            header.setScpUnitCount((byte)(data[3] & 0xF));
+            if(header.getPayloadLength()==0 && header.getScpUnitCount()==0)
+                header.setPdu(true);
+            header.setTimestamp(Util.bytesToLong(Arrays.copyOfRange(data,16,24)));
+            header.setSsid(Util.bytesToLong(Arrays.copyOfRange(data,24,32)));
+            return header;
+        }
+        catch (Exception e)
+        {
+            scplogger.severe(" Exception in parsing ScpHeader "+e.getStackTrace());
+        }
+        return null;
+    }
 
     public static ScpData parseScpData(byte[] data)
     {
@@ -14,7 +42,12 @@ public class ScpParser
         {
             ScpData scpData = new ScpData();
             scpData.setScpData(data);
-            scpData.setHeader(ScpHeader.parseScpHeader(Arrays.copyOfRange(data, 0, 32)));
+            scpData.setHeader(parseScpHeader(Arrays.copyOfRange(data, 0, 32)));
+            if(scpData.getHeader().isPdu() && isValidPDU(data[32]))
+            {
+                scpData.setPayload(Arrays.copyOfRange(data,32,data.length));
+                return parseScpPDU(scpData);
+            }
             scpData.setPayload(Arrays.copyOfRange(data, 32, 32 + scpData.getHeader().getPayloadLength()));
             ScpParser.parseMessageUnits(scpData);
             return scpData;
@@ -22,6 +55,26 @@ public class ScpParser
         catch (Exception e)
         {
             scplogger.severe("Exception parsing scpData" + e.getMessage());
+        }
+        return null;
+    }
+
+    private static boolean isValidPDU(byte datum) {
+        return datum==ScpConstants.SRC_KEY || datum==ScpConstants.SCP_PDU;
+    }
+
+    public static ScpData parseScpPDU(ScpData scpData) {
+        try
+        {
+            byte[] data = scpData.getPayload();
+            scpData.setPdu(new ScpDataUnit((byte)0x50));
+            scpData.getPdu().setPayloadLength(Util.bytesToInt(Arrays.copyOfRange(data,1,5)));
+            scpData.getPdu().setPayload(Arrays.copyOfRange(data,5,5 + scpData.getPdu().getPayloadLength()));
+            return scpData;
+        }
+        catch (Exception e)
+        {
+            scplogger.severe("Exception in parsing SCP-PDU "+ e.getLocalizedMessage());
         }
         return null;
     }

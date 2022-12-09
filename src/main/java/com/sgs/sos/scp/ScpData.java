@@ -7,13 +7,12 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import static com.sgs.sos.scp.ScpHeader.scplogger;
-
 public class ScpData implements Serializable {
     private ScpHeader header;
     private LinkedList<ScpMessageUnit> messageUnits;
     private byte[] scpData;
     private byte[] payload;
+    private ScpDataUnit pdu;
 
     public ScpData()
     {
@@ -31,7 +30,20 @@ public class ScpData implements Serializable {
         messageUnits.add(msg);
     }
 
-    public byte[] getScpDataArray()
+    public byte[] getFullScpDataArray(boolean isPDU, byte[] data)
+    {
+        pdu = new ScpDataUnit(ScpConstants.SCP_PDU);
+        pdu.setPayload(data);
+        byte[] payload = pdu.getPDUPayload();
+        header.setPayloadLength((byte)0);
+        header.setPdu(true);
+        header.setHMAC(Util.calculateCRC(payload));
+        setPayload(payload);
+        setScpData(Util.addByteArrays(header.getHeader(), this.payload));
+        return getScpData();
+    }
+
+    public byte[] getFullScpDataArray()
     {
         byte[] payload = new byte[0];
         for(ScpMessageUnit msg : messageUnits)
@@ -78,6 +90,14 @@ public class ScpData implements Serializable {
         this.payload = payload;
     }
 
+    public ScpDataUnit getPdu() {
+        return pdu;
+    }
+
+    public void setPdu(ScpDataUnit pdu) {
+        this.pdu = pdu;
+    }
+
     @Override
     public String toString() {
         return "ScpData{" +
@@ -85,6 +105,7 @@ public class ScpData implements Serializable {
                 ", messageUnits=" + messageUnits +
                 ", scpData=" + Arrays.toString(scpData) +
                 ", payload=" + Arrays.toString(payload) +
+                ", pdu=" + pdu +
                 '}';
     }
 }

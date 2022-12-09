@@ -3,6 +3,7 @@ package com.sgs.sos.io;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.common.Util;
 import com.sgs.sos.scp.ScpData;
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Logger;
@@ -28,7 +29,10 @@ public class ScpProcessor {
 
         try
         {
-
+            if(data.getHeader().isPdu())
+            {
+                Util.print("PDU IN"+ data.toString());
+            }
         }
         catch (Exception e)
         {
