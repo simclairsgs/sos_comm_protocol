@@ -34,7 +34,7 @@ public class HttpResourceServerThread implements Runnable{
             String fileName= "/index.html";
             if(reqData.equals("/test"))
             {
-                TestMain.test();
+                TestMain.testHTTPWithPDU();
                 printWriter.println("HTTP/1.1 200 OK");							// set HTTP - Headers
                 printWriter.println("Content-Type: text/html");
                 printWriter.println("Content-Length: " + new File(LOCATION+fileName).length());
