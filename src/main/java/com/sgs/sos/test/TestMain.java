@@ -1,7 +1,7 @@
 package com.sgs.sos.test;
 
 import com.sgs.sos.common.AppConf;
-import com.sgs.sos.common.Util;
+import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.scp.ScpData;
@@ -9,9 +9,11 @@ import com.sgs.sos.scp.ScpMessageUnit;
 import com.sgs.sos.server.ScpSocketHandler;
 
 import java.net.InetAddress;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class TestMain {
+    public static String DESTINATION_IP = "192.168.59.229";
     public static void test()
     {
         Logger scplogger = ScpLogger.getScpLogger();
@@ -22,19 +24,12 @@ public class TestMain {
         ScpSocketHandler.DownstreamResponder.sendResponse(address, 8085, data);*/
         try {
             ScpData scpData = new ScpData();
-            scpData.initData("127.0.0.1", (byte) 0x1, (byte) 0x2);
-            ScpMessageUnit m1 = new ScpMessageUnit(ScpConstants.INIT_CONN);
-            m1.setMessage("Test".getBytes());
-            ScpMessageUnit m2 = new ScpMessageUnit(ScpConstants.APP_DATA);
-            m2.setMessage("Hello World".getBytes());
-            ScpMessageUnit m3 = new ScpMessageUnit(ScpConstants.APP_DATA);
-            m3.setMessage("Test Hello World".getBytes());
-            scpData.addMessage(m1);
-            scpData.addMessage(m2);
-            scpData.addMessage(m3);
-            byte[] data = scpData.getScpDataArray();
-            scplogger.info((scpData.toString()));
-            ScpSocketHandler.DownstreamResponder.sendResponse(InetAddress.getByName("192.168.0.109"), 8085, data);
+            scpData.initData(DESTINATION_IP, (byte) 0x3, (byte) 0x2);
+            byte[] data = scpData.getFullScpDataArray(true, CryptoManager.getPublicKey().getEncoded());
+            scplogger.info("PREP " + (scpData.toString()));
+            scplogger.info("PREP " + Arrays.toString(Arrays.copyOfRange(data,32,data.length)));
+            System.out.println(data.length);
+            ScpSocketHandler.DownstreamResponder.sendResponse(InetAddress.getByName(DESTINATION_IP), 8085, data);
 
         } catch (Exception e)
         {

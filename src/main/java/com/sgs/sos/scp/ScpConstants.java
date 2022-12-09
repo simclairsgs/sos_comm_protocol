@@ -9,4 +9,5 @@ public class ScpConstants {
     public static byte BYE = 0x4;
     public static byte APP_DATA = 0x5;
     public static byte SINGLE_SHOT = 0x6;
+    public static byte SCP_PDU = 0x50;
 }

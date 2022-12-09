@@ -27,6 +27,16 @@ public class ScpHeader implements Serializable {
     private byte scpUnitCount = 0;
 
     private byte[] header;
+    private boolean pdu = false;
+
+    public void setPdu(boolean pdu) {
+        this.pdu = pdu;
+    }
+
+    public boolean isPdu()
+    {
+        return this.pdu;
+    }
 
     public ScpHeader(String destAddress, byte priority, byte mode) {
         try {
@@ -166,6 +176,7 @@ public class ScpHeader implements Serializable {
                 ", HMAC=" + HMAC +
                 ", scpUnitCount=" + scpUnitCount +
                 ", header=" + Arrays.toString(header) +
+                ", pdu=" + pdu +
                 '}';
     }
 
@@ -182,30 +193,6 @@ public class ScpHeader implements Serializable {
         return head;
     }
 
-    public static ScpHeader parseScpHeader(byte[] data)
-    {
-        try
-        {
-            ScpHeader header = new ScpHeader();
-            header.setHeader(data);
-            header.setSrcAddress(Arrays.copyOfRange(data, 8, 12));
-            header.setDestAddress(Arrays.copyOfRange(data, 12, 16));
-            header.setHMAC(Util.bytesToInt(Arrays.copyOfRange(data, 4, 8)));
-            header.setPriorityMode(data[1]);
-            header.setReserved(data[0]);
-            header.setPayloadLength(data[2]);
-            header.setPadding((byte)((data[3] & 0xF0)>>4));
-            header.setScpUnitCount((byte)(data[3] & 0xF));
-            header.setTimestamp(Util.bytesToLong(Arrays.copyOfRange(data,16,24)));
-            header.setSsid(Util.bytesToLong(Arrays.copyOfRange(data,24,32)));
-            return header;
-        }
-        catch (Exception e)
-        {
-            scplogger.severe(" Exception in parsing ScpHeader "+e.getStackTrace());
-        }
-        return null;
-    }
 
     /*
                                             SCP HEADER FORMAT - 32 bytes
