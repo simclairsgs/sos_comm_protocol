@@ -38,26 +38,26 @@ public class ScpHeader implements Serializable {
         return this.pdu;
     }
 
-    public ScpHeader(String destAddress, byte priority, byte mode) {
+    public ScpHeader(String destAddress, byte priority, byte mode, long ssid) {
         try {
             InetAddress ip = InetAddress.getByName(destAddress);
             setDestAddress(ip.getAddress());
             srcAddress = (AppConf.getIpAddressAsBytes().clone());
             setPriorityMode((byte) (priority<<4 | mode));
             setTimestamp(System.currentTimeMillis());
-            setSsid(Util.generateSsid());
+            setSsid(ssid);
         } catch (UnknownHostException e) {
             scplogger.severe(e.getLocalizedMessage());
         }
     }
 
-    public ScpHeader(byte[] destAddress, byte priority, byte mode) {
+    public ScpHeader(byte[] destAddress, byte priority, byte mode, long ssid) {
         try {
             setDestAddress(destAddress);
             srcAddress = (AppConf.getIpAddressAsBytes().clone());
             setPriorityMode((byte) (priority<<4 | mode));
             setTimestamp(System.currentTimeMillis());
-            setSsid(Util.generateSsid());
+            setSsid(ssid);
         } catch (Exception e) {
             scplogger.severe(e.getLocalizedMessage());
         }
@@ -191,6 +191,16 @@ public class ScpHeader implements Serializable {
                 hmacBytes, getSrcAddress(), getDestAddress(), timestampBytes, ssidBytes);
         setHeader(head);
         return head;
+    }
+
+    public byte getPriority()
+    {
+        return (byte)((priorityMode & 0xF0)>>4);
+    }
+
+    public byte getMode()
+    {
+        return (byte)((priorityMode & 0xF));
     }
 
 

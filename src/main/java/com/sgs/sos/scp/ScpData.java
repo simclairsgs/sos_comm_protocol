@@ -19,10 +19,16 @@ public class ScpData implements Serializable {
 
     }
 
-    public void initData(String destination, byte priority, byte mode)
+    public void initData(String destination, byte priority, byte mode, long ssid)
     {
-       header = new ScpHeader(destination, priority, mode);
+       header = new ScpHeader(destination, priority, mode, ssid);
        messageUnits = new LinkedList<ScpMessageUnit>();
+    }
+
+    public void initData(byte[] destination, byte priority, byte mode, long ssid)
+    {
+        header = new ScpHeader(destination, priority, mode, ssid);
+        messageUnits = new LinkedList<ScpMessageUnit>();
     }
 
     public void addMessage(ScpMessageUnit msg)

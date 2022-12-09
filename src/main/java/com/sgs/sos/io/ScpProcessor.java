@@ -2,7 +2,10 @@ package com.sgs.sos.io;
 
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.common.Util;
+import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.scp.ScpData;
+import com.sgs.sos.scp.ScpMessageUnit;
+import com.sgs.sos.session.SessionManager;
 import com.sun.org.apache.bcel.internal.generic.SWITCH;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -31,7 +34,11 @@ public class ScpProcessor {
         {
             if(data.getHeader().isPdu())
             {
-                Util.print("PDU IN"+ data.toString());
+                processPDU(data);
+            }
+            else
+            {
+                processSMU(data);
             }
         }
         catch (Exception e)
@@ -42,5 +49,21 @@ public class ScpProcessor {
         {
             process();
         }
+    }
+
+    private static void processSMU(ScpData data)
+    {
+        long ssid = data.getHeader().getSsid();
+        if(!SessionManager.isExistingSsid(ssid))
+            SessionManager.createSession(ssid, data);
+        for(ScpMessageUnit msg : data.getMessageUnits())
+        {
+           SessionManager.processMessageUnits(ssid,msg);
+        }
+    }
+
+    private static void processPDU(ScpData data)
+    {
+
     }
 }
