@@ -2,6 +2,7 @@ package com.sgs.sos.test;
 
 import com.sgs.sos.common.AppConf;
 import com.sgs.sos.common.CryptoManager;
+import com.sgs.sos.common.Util;
 import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.scp.ScpData;
@@ -36,7 +37,7 @@ public class TestMain {
 
     public static void testPDU() throws Exception {
         ScpData scpData = new ScpData();
-        scpData.initData(DESTINATION_IP, ScpConstants.HIGH, ScpConstants.SOCKET);
+        scpData.initData(DESTINATION_IP, ScpConstants.HIGH, ScpConstants.SOCKET, Util.generateSsid());
         byte[] data = scpData.getFullScpDataArray(true, CryptoManager.getPublicKey().getEncoded());
         scplogger.info("PREP " + (scpData.toString()));
         scplogger.info("PREP " + Arrays.toString(Arrays.copyOfRange(data,32,data.length)));
@@ -45,7 +46,7 @@ public class TestMain {
 
     public static void testHTTPWithPDU() throws Exception {
         ScpData scpData = new ScpData();
-        scpData.initData(DESTINATION_IP, ScpConstants.HIGH, ScpConstants.HTTP);
+        scpData.initData(DESTINATION_IP, ScpConstants.HIGH, ScpConstants.HTTP, Util.generateSsid());
         byte[] data = scpData.getFullScpDataArray(true, CryptoManager.getPublicKey().getEncoded());
         scplogger.info("PREP " + (scpData.toString()));
         scplogger.info("PREP " + Arrays.toString(Arrays.copyOfRange(data,32,data.length)));
@@ -55,12 +56,9 @@ public class TestMain {
     public static void testPMU() throws Exception
     {
         ScpData scpData1 = new ScpData();
-        scpData1.initData(DESTINATION_IP, ScpConstants.LOW, ScpConstants.SOCKET);
+        scpData1.initData(DESTINATION_IP, ScpConstants.LOW, ScpConstants.SOCKET, Util.generateSsid());
         ScpMessageUnit mu = new ScpMessageUnit(ScpConstants.INIT_CONN);
         mu.setMessage("Test".getBytes());
-        scpData1.addMessage(mu);
-        mu = new ScpMessageUnit(ScpConstants.TERMINATE_CONN);
-        mu.setMessage("BYE".getBytes());
         scpData1.addMessage(mu);
         byte[] data1 = scpData1.getFullScpDataArray();
         scplogger.info("PREP " + (scpData1.toString()));
