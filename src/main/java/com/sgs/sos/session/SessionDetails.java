@@ -1,7 +1,10 @@
 package com.sgs.sos.session;
 
 import com.sgs.sos.common.AppConf;
+import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.common.ScpLogger;
+import com.sgs.sos.common.Util;
+import com.sgs.sos.io.ScpOutputHandler;
 import com.sgs.sos.scp.ActionId;
 import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.scp.ScpData;
@@ -9,9 +12,12 @@ import com.sgs.sos.scp.ScpMessageUnit;
 import com.sgs.sos.server.ScpSocketHandler;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.logging.Logger;
+
+import static com.sgs.sos.session.SessionManager.ssidMap;
 
 public class SessionDetails
 {
@@ -44,13 +50,6 @@ public class SessionDetails
         this.currentState = currentState;
     }
 
-    public boolean isEncrypted() {
-        return encrypted;
-    }
-
-    public void setEncrypted(boolean encrypted) {
-        this.encrypted = encrypted;
-    }
 
     public long getLastPacketIn() {
         return lastPacketIn;
@@ -107,6 +106,14 @@ public class SessionDetails
         this.connectionType = connectionType;
         this.destAddress = destAddress.clone();
         this.srcAddress = srcAddress.clone();
+        try {
+            if(CryptoManager.isIPAddressInKeymap(InetAddress.getByAddress(srcAddress)))
+            {
+                this.encrypted = true;
+            }
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -128,6 +135,7 @@ public class SessionDetails
         this.currentState = ScpConstants.SESSION_STATE.ACTIVE;
         this.encrypted = false;
         scplogger.info(" SESSION_ACTIVE : "+ this.toString());
+        ssidMap.put(getSsid(), this);
         sendInitAck();
     }
 
@@ -140,12 +148,33 @@ public class SessionDetails
             if (connectionType == ScpConstants.SOCKET) {
                 scpData.initData(getSrcAddress(), ScpConstants.HIGH, ScpConstants.SOCKET, getSsid());
                 scpData.addMessage(new ScpMessageUnit(ScpConstants.INIT_ACK));
-                ScpSocketHandler.DownstreamResponder.sendResponse(InetAddress.getByAddress(getSrcAddress()), AppConf.getUsServerPort(), scpData.getFullScpDataArray());
+                if(AppConf.isAckEnabled())
+                ScpOutputHandler.sendData(getSrcAddress(), scpData.getFullScpDataArray());
             }
         }
         catch (Exception e)
         {
             scplogger.severe("EXCEPTION IN SENDING ACK_INIT "+e.getLocalizedMessage());
+        }
+    }
+
+    public void closeSession()
+    {
+        this.currentState = ScpConstants.SESSION_STATE.CLOSED;
+        scplogger.info(" SESSION_CLOSED : "+ this.toString());
+        try
+        {
+            ScpData scpData = new ScpData();
+            if (connectionType == ScpConstants.SOCKET) {
+                scpData.initData(getSrcAddress(), ScpConstants.HIGH, ScpConstants.SOCKET, getSsid());
+                scpData.addMessage(new ScpMessageUnit(ScpConstants.BYE));
+                if(AppConf.isAckEnabled())
+                    ScpOutputHandler.sendData(getSrcAddress(), scpData.getFullScpDataArray());
+            }
+        }
+        catch (Exception e)
+        {
+            scplogger.severe("EXCEPTION IN SENDING BYE "+e.getLocalizedMessage());
         }
     }
 }

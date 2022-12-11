@@ -1,18 +1,26 @@
 package com.sgs.sos.common;
 
+import javax.crypto.Cipher;
 import java.io.FileOutputStream;
+import java.net.InetAddress;
 import java.security.*;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Hashtable;
+
+import static com.sgs.sos.session.SessionManager.scplogger;
 
 public class CryptoManager
 {
     private static PrivateKey privateKey;
     private static PublicKey publicKey;
 
+    private static Hashtable<String,PublicKey> keymap = new Hashtable<String, PublicKey>();
+
     public static void init() {
         try
         {
             KeyPairGenerator keygen = KeyPairGenerator.getInstance("RSA");
-            keygen.initialize(1024);
+            keygen.initialize(AppConf.CRYPTO_KEY_SIZE);
             KeyPair keyPair = keygen.generateKeyPair();
             privateKey = keyPair.getPrivate();
             publicKey = keyPair.getPublic();
@@ -32,11 +40,63 @@ public class CryptoManager
         }
     }
 
+    public static boolean isIPAddressInKeymap(InetAddress address)
+    {
+        return keymap.containsKey(address.getHostAddress());
+    }
+
+    public static PublicKey getPublicKeyofSrc(String address)
+    {
+        return keymap.get(address);
+    }
+
     public static PrivateKey getPrivateKey() {
         return privateKey;
     }
 
     public static PublicKey getPublicKey() {
         return publicKey;
+    }
+
+    public static void setPublicKeyOfSource(InetAddress srcAddress, byte[] publicKey) {
+        X509EncodedKeySpec ks = new X509EncodedKeySpec(publicKey);
+        try {
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            PublicKey pub = kf.generatePublic(ks);
+            keymap.put(srcAddress.getHostName(), pub);
+        } catch (Exception e) {
+            scplogger.severe("EXCEPTION in setting SRC KEY"+ e.getLocalizedMessage()+ " | "+ srcAddress);
+        }
+    }
+
+    public static byte[] encrypt(String ip, byte[] data)
+    {
+        try
+        {
+            PublicKey key = keymap.get(ip);
+            Cipher encrypt = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            encrypt.init(Cipher.ENCRYPT_MODE, key);
+            return encrypt.doFinal(data);
+        }
+        catch (Exception e)
+        {
+            scplogger.severe("EXCEPTION IN Encryption "+ e.getLocalizedMessage());
+        }
+        return null;
+    }
+
+    public static byte[] decrypt(byte[] data)
+    {
+        try
+        {
+            Cipher decrypt=Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            decrypt.init(Cipher.DECRYPT_MODE, privateKey);
+            return decrypt.doFinal(data);
+        }
+        catch (Exception e)
+        {
+            scplogger.severe("EXCEPTION IN Decryption "+ e.getLocalizedMessage());
+        }
+        return null;
     }
 }

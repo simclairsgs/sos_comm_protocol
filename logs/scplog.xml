@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008770</millis>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768856</millis>
   <sequence>0</sequence>
   <logger>scpLog</logger>
   <level>CONFIG</level>
@@ -13,9 +13,9 @@
   <message>crypto Key generated</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008804</millis>
-  <sequence>1</sequence>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768894</millis>
+  <sequence>3</sequence>
   <logger>scpLog</logger>
   <level>CONFIG</level>
   <class>com.sgs.sos.server.ServerMain$ServerThread</class>
@@ -24,9 +24,9 @@
   <message>Web+Scp : Server Started listening on port 8080</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008805</millis>
-  <sequence>2</sequence>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768895</millis>
+  <sequence>4</sequence>
   <logger>scpLog</logger>
   <level>CONFIG</level>
   <class>com.sgs.sos.server.ServerMain$ServerThread</class>
@@ -35,9 +35,9 @@
   <message>------------------------- SERVER STARTED SUCCESSFULLY -------------------------------</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008814</millis>
-  <sequence>3</sequence>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768893</millis>
+  <sequence>1</sequence>
   <logger>scpLog</logger>
   <level>CONFIG</level>
   <class>com.sgs.sos.server.ScpSocketHandler$DownstreamResponder</class>
@@ -46,9 +46,9 @@
   <message>Scp-ds: D/S responder open at port : 8086</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008815</millis>
-  <sequence>4</sequence>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768893</millis>
+  <sequence>2</sequence>
   <logger>scpLog</logger>
   <level>CONFIG</level>
   <class>com.sgs.sos.server.ScpSocketHandler$UpstreamListener</class>
@@ -57,42 +57,20 @@
   <message>Scp Listener started at port :8085</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008815</millis>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768923</millis>
   <sequence>5</sequence>
   <logger>scpLog</logger>
-  <level>WARNING</level>
-  <class>com.sgs.sos.test.TestMain</class>
-  <method>test</method>
+  <level>INFO</level>
+  <class>com.sgs.sos.server.ScpSocketHandler$DownstreamResponder</class>
+  <method>sendResponse</method>
   <thread>1</thread>
-  <message>Current Local IP address : 192.168.59.229</message>
+  <message>DATA_OUT -&gt; destination=192.168.59.229:8085</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008846</millis>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768925</millis>
   <sequence>6</sequence>
-  <logger>scpLog</logger>
-  <level>INFO</level>
-  <class>com.sgs.sos.test.TestMain</class>
-  <method>testPDU</method>
-  <thread>1</thread>
-  <message>PREP ScpData{header=ScpHeader{reserved=3, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], payloadLength=0, timestamp=1670606008821, ssid=5686528924766754005, padding=0, priorityMode=17, HMAC=-273405822, scpUnitCount=0, header=[3, 17, 0, 0, -17, -76, 40, -126, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -79, -11, 78, -22, -101, -19, -75, -76, -44, -43], pdu=true}, messageUnits=[], scpData=[3, 17, 0, 0, -17, -76, 40, -126, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -79, -11, 78, -22, -101, -19, -75, -76, -44, -43, 80, 0, 0, 0, -94, 48, -127, -97, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -127, -115, 0, 48, -127, -119, 2, -127, -127, 0, -70, -128, 5, 38, 113, 93, 47, -13, 66, -111, -46, -22, 40, 101, 49, 112, 64, -42, -57, -101, 43, -69, -52, 91, -16, -29, -4, -92, 93, 92, 59, 120, 56, 126, -121, 48, -84, -63, 42, 11, 98, -122, -57, -63, 119, -59, 105, 98, 26, -123, 12, 58, -15, 19, 2, 64, 67, -122, -103, -82, -34, -11, -20, 18, 36, -84, -106, 20, -13, 118, 72, 79, 14, 0, -43, 52, 82, -89, -91, -34, 117, 24, -121, -47, -84, -12, -79, 13, -110, -62, -116, -75, -121, 89, 53, -76, 62, 109, 82, 71, 42, 105, 4, 126, 68, 29, 10, 92, 88, -104, 92, -82, 20, 113, -35, 39, 4, 109, 108, 44, 49, 87, 53, -4, -26, -20, -31, 109, 2, 3, 1, 0, 1], payload=[80, 0, 0, 0, -94, 48, -127, -97, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -127, -115, 0, 48, -127, -119, 2, -127, -127, 0, -70, -128, 5, 38, 113, 93, 47, -13, 66, -111, -46, -22, 40, 101, 49, 112, 64, -42, -57, -101, 43, -69, -52, 91, -16, -29, -4, -92, 93, 92, 59, 120, 56, 126, -121, 48, -84, -63, 42, 11, 98, -122, -57, -63, 119, -59, 105, 98, 26, -123, 12, 58, -15, 19, 2, 64, 67, -122, -103, -82, -34, -11, -20, 18, 36, -84, -106, 20, -13, 118, 72, 79, 14, 0, -43, 52, 82, -89, -91, -34, 117, 24, -121, -47, -84, -12, -79, 13, -110, -62, -116, -75, -121, 89, 53, -76, 62, 109, 82, 71, 42, 105, 4, 126, 68, 29, 10, 92, 88, -104, 92, -82, 20, 113, -35, 39, 4, 109, 108, 44, 49, 87, 53, -4, -26, -20, -31, 109, 2, 3, 1, 0, 1], pdu=ScpDataUnit{payload=[48, -127, -97, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -127, -115, 0, 48, -127, -119, 2, -127, -127, 0, -70, -128, 5, 38, 113, 93, 47, -13, 66, -111, -46, -22, 40, 101, 49, 112, 64, -42, -57, -101, 43, -69, -52, 91, -16, -29, -4, -92, 93, 92, 59, 120, 56, 126, -121, 48, -84, -63, 42, 11, 98, -122, -57, -63, 119, -59, 105, 98, 26, -123, 12, 58, -15, 19, 2, 64, 67, -122, -103, -82, -34, -11, -20, 18, 36, -84, -106, 20, -13, 118, 72, 79, 14, 0, -43, 52, 82, -89, -91, -34, 117, 24, -121, -47, -84, -12, -79, 13, -110, -62, -116, -75, -121, 89, 53, -76, 62, 109, 82, 71, 42, 105, 4, 126, 68, 29, 10, 92, 88, -104, 92, -82, 20, 113, -35, 39, 4, 109, 108, 44, 49, 87, 53, -4, -26, -20, -31, 109, 2, 3, 1, 0, 1], pduType=80, payloadLength=162}}</message>
-</record>
-<record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008849</millis>
-  <sequence>7</sequence>
-  <logger>scpLog</logger>
-  <level>INFO</level>
-  <class>com.sgs.sos.test.TestMain</class>
-  <method>testPDU</method>
-  <thread>1</thread>
-  <message>PREP [80, 0, 0, 0, -94, 48, -127, -97, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -127, -115, 0, 48, -127, -119, 2, -127, -127, 0, -70, -128, 5, 38, 113, 93, 47, -13, 66, -111, -46, -22, 40, 101, 49, 112, 64, -42, -57, -101, 43, -69, -52, 91, -16, -29, -4, -92, 93, 92, 59, 120, 56, 126, -121, 48, -84, -63, 42, 11, 98, -122, -57, -63, 119, -59, 105, 98, 26, -123, 12, 58, -15, 19, 2, 64, 67, -122, -103, -82, -34, -11, -20, 18, 36, -84, -106, 20, -13, 118, 72, 79, 14, 0, -43, 52, 82, -89, -91, -34, 117, 24, -121, -47, -84, -12, -79, 13, -110, -62, -116, -75, -121, 89, 53, -76, 62, 109, 82, 71, 42, 105, 4, 126, 68, 29, 10, 92, 88, -104, 92, -82, 20, 113, -35, 39, 4, 109, 108, 44, 49, 87, 53, -4, -26, -20, -31, 109, 2, 3, 1, 0, 1]</message>
-</record>
-<record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008852</millis>
-  <sequence>8</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
   <class>com.sgs.sos.io.ScpInputHandler</class>
@@ -101,30 +79,52 @@
   <message>REQUEST_IN -&gt; address_in=192.168.59.229:8086</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008854</millis>
-  <sequence>9</sequence>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768927</millis>
+  <sequence>7</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
   <class>com.sgs.sos.io.ScpInputHandler</class>
   <method>handle</method>
   <thread>13</thread>
-  <message>ScpData{header=ScpHeader{reserved=3, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], payloadLength=0, timestamp=1670606008821, ssid=5686528924766754005, padding=0, priorityMode=17, HMAC=-273405822, scpUnitCount=0, header=[3, 17, 0, 0, -17, -76, 40, -126, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -79, -11, 78, -22, -101, -19, -75, -76, -44, -43], pdu=true}, messageUnits=null, scpData=[3, 17, 0, 0, -17, -76, 40, -126, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -79, -11, 78, -22, -101, -19, -75, -76, -44, -43, 80, 0, 0, 0, -94, 48, -127, -97, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -127, -115, 0, 48, -127, -119, 2, -127, -127, 0, -70, -128, 5, 38, 113, 93, 47, -13, 66, -111, -46, -22, 40, 101, 49, 112, 64, -42, -57, -101, 43, -69, -52, 91, -16, -29, -4, -92, 93, 92, 59, 120, 56, 126, -121, 48, -84, -63, 42, 11, 98, -122, -57, -63, 119, -59, 105, 98, 26, -123, 12, 58, -15, 19, 2, 64, 67, -122, -103, -82, -34, -11, -20, 18, 36, -84, -106, 20, -13, 118, 72, 79, 14, 0, -43, 52, 82, -89, -91, -34, 117, 24, -121, -47, -84, -12, -79, 13, -110, -62, -116, -75, -121, 89, 53, -76, 62, 109, 82, 71, 42, 105, 4, 126, 68, 29, 10, 92, 88, -104, 92, -82, 20, 113, -35, 39, 4, 109, 108, 44, 49, 87, 53, -4, -26, -20, -31, 109, 2, 3, 1, 0, 1], payload=[80, 0, 0, 0, -94, 48, -127, -97, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -127, -115, 0, 48, -127, -119, 2, -127, -127, 0, -70, -128, 5, 38, 113, 93, 47, -13, 66, -111, -46, -22, 40, 101, 49, 112, 64, -42, -57, -101, 43, -69, -52, 91, -16, -29, -4, -92, 93, 92, 59, 120, 56, 126, -121, 48, -84, -63, 42, 11, 98, -122, -57, -63, 119, -59, 105, 98, 26, -123, 12, 58, -15, 19, 2, 64, 67, -122, -103, -82, -34, -11, -20, 18, 36, -84, -106, 20, -13, 118, 72, 79, 14, 0, -43, 52, 82, -89, -91, -34, 117, 24, -121, -47, -84, -12, -79, 13, -110, -62, -116, -75, -121, 89, 53, -76, 62, 109, 82, 71, 42, 105, 4, 126, 68, 29, 10, 92, 88, -104, 92, -82, 20, 113, -35, 39, 4, 109, 108, 44, 49, 87, 53, -4, -26, -20, -31, 109, 2, 3, 1, 0, 1], pdu=ScpDataUnit{payload=[48, -127, -97, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -127, -115, 0, 48, -127, -119, 2, -127, -127, 0, -70, -128, 5, 38, 113, 93, 47, -13, 66, -111, -46, -22, 40, 101, 49, 112, 64, -42, -57, -101, 43, -69, -52, 91, -16, -29, -4, -92, 93, 92, 59, 120, 56, 126, -121, 48, -84, -63, 42, 11, 98, -122, -57, -63, 119, -59, 105, 98, 26, -123, 12, 58, -15, 19, 2, 64, 67, -122, -103, -82, -34, -11, -20, 18, 36, -84, -106, 20, -13, 118, 72, 79, 14, 0, -43, 52, 82, -89, -91, -34, 117, 24, -121, -47, -84, -12, -79, 13, -110, -62, -116, -75, -121, 89, 53, -76, 62, 109, 82, 71, 42, 105, 4, 126, 68, 29, 10, 92, 88, -104, 92, -82, 20, 113, -35, 39, 4, 109, 108, 44, 49, 87, 53, -4, -26, -20, -31, 109, 2, 3, 1, 0, 1], pduType=80, payloadLength=162}}</message>
+  <message>ScpData{header=ScpHeader{reserved=3, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], payloadLength=2, timestamp=1670775768903, ssid=3472474651322226894, padding=0, priorityMode=17, HMAC=1489118142, scpUnitCount=1, header=[3, 17, 2, 1, 88, -62, 35, -66, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -123, 1, -1, 7, 71, 48, 48, -75, 76, 35, -100, 24, -50], pdu=false}, messageUnits=[ScpMessageUnit{message=[], length=0, type=1}], scpData=[3, 17, 2, 1, 88, -62, 35, -66, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -123, 1, -1, 7, 71, 48, 48, -75, 76, 35, -100, 24, -50, 1, 0], payload=[1, 0], pdu=null}</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008858</millis>
-  <sequence>10</sequence>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768930</millis>
+  <sequence>8</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
   <class>com.sgs.sos.io.ScpProcessor</class>
   <method>process</method>
   <thread>13</thread>
-  <message>Processing ScpData =&gt; ssid=5686528924766754005</message>
+  <message>Processing ScpData =&gt; ssid=3472474651322226894</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:28</date>
-  <millis>1670606008859</millis>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768935</millis>
+  <sequence>9</sequence>
+  <logger>scpLog</logger>
+  <level>WARNING</level>
+  <class>com.sgs.sos.session.SessionManager</class>
+  <method>processMessageUnits</method>
+  <thread>13</thread>
+  <message>ssid=3472474651322226894 =&gt; ScpMessageUnit{message=[], length=0, type=1}</message>
+</record>
+<record>
+  <date>2022-12-11T21:52:48</date>
+  <millis>1670775768936</millis>
+  <sequence>10</sequence>
+  <logger>scpLog</logger>
+  <level>INFO</level>
+  <class>com.sgs.sos.session.SessionDetails</class>
+  <method>setActiveSession</method>
+  <thread>13</thread>
+  <message> SESSION_ACTIVE : SessionDetails{ssid=3472474651322226894, currentState=1, encrypted=false, lastPacketIn=1670775768903, sourceKey=null, connectionType=1, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], lastActionId=NULL_ACTION}</message>
+</record>
+<record>
+  <date>2022-12-11T21:52:50</date>
+  <millis>1670775770926</millis>
   <sequence>11</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
@@ -134,42 +134,75 @@
   <message>DATA_OUT -&gt; destination=192.168.59.229:8085</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013862</millis>
+  <date>2022-12-11T21:52:50</date>
+  <millis>1670775770927</millis>
   <sequence>12</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
-  <class>com.sgs.sos.test.TestMain</class>
-  <method>testPMU</method>
-  <thread>1</thread>
-  <message>PREP ScpData{header=ScpHeader{reserved=3, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], payloadLength=6, timestamp=1670606013860, ssid=-1044801489928158246, padding=0, priorityMode=1, HMAC=-703079704, scpUnitCount=1, header=[3, 1, 6, 1, -42, 23, -38, -24, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -59, -92, -15, -128, 30, -108, -100, 8, -125, -38], pdu=false}, messageUnits=[ScpMessageUnit{message=[84, 101, 115, 116], length=4, type=1}], scpData=[3, 1, 6, 1, -42, 23, -38, -24, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -59, -92, -15, -128, 30, -108, -100, 8, -125, -38, 1, 4, 84, 101, 115, 116], payload=[1, 4, 84, 101, 115, 116], pdu=null}</message>
+  <class>com.sgs.sos.io.ScpInputHandler</class>
+  <method>handle</method>
+  <thread>13</thread>
+  <message>REQUEST_IN -&gt; address_in=192.168.59.229:8086</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013864</millis>
+  <date>2022-12-11T21:52:50</date>
+  <millis>1670775770929</millis>
   <sequence>13</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
-  <class>com.sgs.sos.test.TestMain</class>
-  <method>testPMU</method>
-  <thread>1</thread>
-  <message>PREP [1, 4, 84, 101, 115, 116]</message>
+  <class>com.sgs.sos.io.ScpInputHandler</class>
+  <method>handle</method>
+  <thread>13</thread>
+  <message>ScpData{header=ScpHeader{reserved=3, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], payloadLength=0, timestamp=1670775770925, ssid=3472474651322226894, padding=0, priorityMode=17, HMAC=1460021486, scpUnitCount=0, header=[3, 17, 0, 0, 87, 6, 40, -18, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -123, 1, -1, 15, 45, 48, 48, -75, 76, 35, -100, 24, -50], pdu=true}, messageUnits=null, scpData=[3, 17, 0, 0, 87, 6, 40, -18, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -123, 1, -1, 15, 45, 48, 48, -75, 76, 35, -100, 24, -50, 3, 0, 0, 1, 38, 48, -126, 1, 34, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -126, 1, 15, 0, 48, -126, 1, 10, 2, -126, 1, 1, 0, -127, 118, 24, 36, 76, -75, 40, -6, -4, 30, -33, 60, -100, 65, 9, -41, 67, 16, -19, 50, -11, 16, 53, 81, -104, -111, 14, -102, 100, 118, -116, -46, -115, -82, -21, -16, 68, 3, -15, 21, 12, 61, -99, -42, -30, -62, 99, -3, -105, -64, 55, -49, 51, -50, 42, -109, -65, -118, -123, -81, 118, -67, -119, -81, 87, -84, -2, -97, -103, 80, -14, -95, 4, 109, -73, -46, -100, -116, -102, -67, -118, 28, -124, 32, 73, -9, 59, -22, -118, 92, 26, -24, 108, -107, -76, -126, 4, 50, -46, 107, -25, 84, 115, -87, -98, -92, 12, 7, 126, -62, -127, 114, 74, 76, 56, -17, 60, 20, 106, -125, 41, -98, -47, -105, -8, -91, -64, -30, 118, -69, -120, -120, 15, -63, 6, -66, -79, 72, -119, 101, -126, -81, -60, -37, -92, -31, -14, -108, -96, -101, -1, -10, 70, -118, 11, 7, 87, 27, -37, -36, 79, -28, -7, -67, 99, -101, -59, -88, 14, -69, -106, -114, 64, 79, -125, 89, 68, -81, 38, 62, -95, 121, 68, 53, 118, -59, -11, -119, -126, -20, -30, 45, 7, -69, 93, 17, 102, 95, -70, 69, 30, -11, 74, 17, 121, 60, 24, -126, -32, -39, 118, -59, 87, 17, -56, 6, 38, 94, 56, 120, 127, 96, 110, 3, -32, -94, -49, 88, 108, -54, 104, 36, -103, 6, 7, -2, 11, 3, -45, 19, 77, 121, -59, -53, 80, 18, 87, 72, 14, -74, -81, 64, -51, -3, 94, 37, 2, 3, 1, 0, 1], payload=[3, 0, 0, 1, 38, 48, -126, 1, 34, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -126, 1, 15, 0, 48, -126, 1, 10, 2, -126, 1, 1, 0, -127, 118, 24, 36, 76, -75, 40, -6, -4, 30, -33, 60, -100, 65, 9, -41, 67, 16, -19, 50, -11, 16, 53, 81, -104, -111, 14, -102, 100, 118, -116, -46, -115, -82, -21, -16, 68, 3, -15, 21, 12, 61, -99, -42, -30, -62, 99, -3, -105, -64, 55, -49, 51, -50, 42, -109, -65, -118, -123, -81, 118, -67, -119, -81, 87, -84, -2, -97, -103, 80, -14, -95, 4, 109, -73, -46, -100, -116, -102, -67, -118, 28, -124, 32, 73, -9, 59, -22, -118, 92, 26, -24, 108, -107, -76, -126, 4, 50, -46, 107, -25, 84, 115, -87, -98, -92, 12, 7, 126, -62, -127, 114, 74, 76, 56, -17, 60, 20, 106, -125, 41, -98, -47, -105, -8, -91, -64, -30, 118, -69, -120, -120, 15, -63, 6, -66, -79, 72, -119, 101, -126, -81, -60, -37, -92, -31, -14, -108, -96, -101, -1, -10, 70, -118, 11, 7, 87, 27, -37, -36, 79, -28, -7, -67, 99, -101, -59, -88, 14, -69, -106, -114, 64, 79, -125, 89, 68, -81, 38, 62, -95, 121, 68, 53, 118, -59, -11, -119, -126, -20, -30, 45, 7, -69, 93, 17, 102, 95, -70, 69, 30, -11, 74, 17, 121, 60, 24, -126, -32, -39, 118, -59, 87, 17, -56, 6, 38, 94, 56, 120, 127, 96, 110, 3, -32, -94, -49, 88, 108, -54, 104, 36, -103, 6, 7, -2, 11, 3, -45, 19, 77, 121, -59, -53, 80, 18, 87, 72, 14, -74, -81, 64, -51, -3, 94, 37, 2, 3, 1, 0, 1], pdu=ScpDataUnit{payload=[48, -126, 1, 34, 48, 13, 6, 9, 42, -122, 72, -122, -9, 13, 1, 1, 1, 5, 0, 3, -126, 1, 15, 0, 48, -126, 1, 10, 2, -126, 1, 1, 0, -127, 118, 24, 36, 76, -75, 40, -6, -4, 30, -33, 60, -100, 65, 9, -41, 67, 16, -19, 50, -11, 16, 53, 81, -104, -111, 14, -102, 100, 118, -116, -46, -115, -82, -21, -16, 68, 3, -15, 21, 12, 61, -99, -42, -30, -62, 99, -3, -105, -64, 55, -49, 51, -50, 42, -109, -65, -118, -123, -81, 118, -67, -119, -81, 87, -84, -2, -97, -103, 80, -14, -95, 4, 109, -73, -46, -100, -116, -102, -67, -118, 28, -124, 32, 73, -9, 59, -22, -118, 92, 26, -24, 108, -107, -76, -126, 4, 50, -46, 107, -25, 84, 115, -87, -98, -92, 12, 7, 126, -62, -127, 114, 74, 76, 56, -17, 60, 20, 106, -125, 41, -98, -47, -105, -8, -91, -64, -30, 118, -69, -120, -120, 15, -63, 6, -66, -79, 72, -119, 101, -126, -81, -60, -37, -92, -31, -14, -108, -96, -101, -1, -10, 70, -118, 11, 7, 87, 27, -37, -36, 79, -28, -7, -67, 99, -101, -59, -88, 14, -69, -106, -114, 64, 79, -125, 89, 68, -81, 38, 62, -95, 121, 68, 53, 118, -59, -11, -119, -126, -20, -30, 45, 7, -69, 93, 17, 102, 95, -70, 69, 30, -11, 74, 17, 121, 60, 24, -126, -32, -39, 118, -59, 87, 17, -56, 6, 38, 94, 56, 120, 127, 96, 110, 3, -32, -94, -49, 88, 108, -54, 104, 36, -103, 6, 7, -2, 11, 3, -45, 19, 77, 121, -59, -53, 80, 18, 87, 72, 14, -74, -81, 64, -51, -3, 94, 37, 2, 3, 1, 0, 1], pduType=3, payloadLength=294}}</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013865</millis>
+  <date>2022-12-11T21:52:50</date>
+  <millis>1670775770933</millis>
   <sequence>14</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
+  <class>com.sgs.sos.io.ScpProcessor</class>
+  <method>process</method>
+  <thread>13</thread>
+  <message>Processing ScpData =&gt; ssid=3472474651322226894</message>
+</record>
+<record>
+  <date>2022-12-11T21:52:50</date>
+  <millis>1670775770935</millis>
+  <sequence>15</sequence>
+  <logger>scpLog</logger>
+  <level>WARNING</level>
+  <class>com.sgs.sos.session.SessionManager</class>
+  <method>isActiveSession</method>
+  <thread>13</thread>
+  <message>true 1 1</message>
+</record>
+<record>
+  <date>2022-12-11T21:52:50</date>
+  <millis>1670775770936</millis>
+  <sequence>16</sequence>
+  <logger>scpLog</logger>
+  <level>INFO</level>
+  <class>com.sgs.sos.session.SessionManager</class>
+  <method>setSourceEncryptionKey</method>
+  <thread>13</thread>
+  <message>SETTING SRC KEY 192.168.59.229</message>
+</record>
+<record>
+  <date>2022-12-11T21:53:00</date>
+  <millis>1670775780986</millis>
+  <sequence>17</sequence>
+  <logger>scpLog</logger>
+  <level>INFO</level>
   <class>com.sgs.sos.server.ScpSocketHandler$DownstreamResponder</class>
   <method>sendResponse</method>
   <thread>1</thread>
   <message>DATA_OUT -&gt; destination=192.168.59.229:8085</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013865</millis>
-  <sequence>15</sequence>
+  <date>2022-12-11T21:53:00</date>
+  <millis>1670775780994</millis>
+  <sequence>18</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
   <class>com.sgs.sos.io.ScpInputHandler</class>
@@ -178,102 +211,47 @@
   <message>REQUEST_IN -&gt; address_in=192.168.59.229:8086</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013867</millis>
-  <sequence>16</sequence>
-  <logger>scpLog</logger>
-  <level>INFO</level>
-  <class>com.sgs.sos.io.ScpInputHandler</class>
-  <method>handle</method>
-  <thread>13</thread>
-  <message>ScpData{header=ScpHeader{reserved=3, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], payloadLength=6, timestamp=1670606013860, ssid=-1044801489928158246, padding=0, priorityMode=1, HMAC=-703079704, scpUnitCount=1, header=[3, 1, 6, 1, -42, 23, -38, -24, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -59, -92, -15, -128, 30, -108, -100, 8, -125, -38], pdu=false}, messageUnits=[ScpMessageUnit{message=[84, 101, 115, 116], length=4, type=1}], scpData=[3, 1, 6, 1, -42, 23, -38, -24, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -59, -92, -15, -128, 30, -108, -100, 8, -125, -38, 1, 4, 84, 101, 115, 116], payload=[1, 4, 84, 101, 115, 116], pdu=null}</message>
-</record>
-<record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013868</millis>
-  <sequence>17</sequence>
-  <logger>scpLog</logger>
-  <level>INFO</level>
-  <class>com.sgs.sos.io.ScpProcessor</class>
-  <method>process</method>
-  <thread>13</thread>
-  <message>Processing ScpData =&gt; ssid=-1044801489928158246</message>
-</record>
-<record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013871</millis>
-  <sequence>18</sequence>
-  <logger>scpLog</logger>
-  <level>WARNING</level>
-  <class>com.sgs.sos.session.SessionManager</class>
-  <method>processMessageUnits</method>
-  <thread>13</thread>
-  <message>ssid=-1044801489928158246 =&gt; ScpMessageUnit{message=[84, 101, 115, 116], length=4, type=1}</message>
-</record>
-<record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013872</millis>
+  <date>2022-12-11T21:53:00</date>
+  <millis>1670775780995</millis>
   <sequence>19</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
-  <class>com.sgs.sos.session.SessionDetails</class>
-  <method>setActiveSession</method>
+  <class>com.sgs.sos.io.ScpInputHandler</class>
+  <method>handle</method>
   <thread>13</thread>
-  <message> SESSION_ACTIVE : SessionDetails{ssid=-1044801489928158246, currentState=1, encrypted=false, lastPacketIn=1670606013860, sourceKey=null, connectionType=1, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], lastActionId=NULL_ACTION}</message>
+  <message>ScpData{header=ScpHeader{reserved=3, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], payloadLength=2, timestamp=1670775780928, ssid=3472474651322226894, padding=0, priorityMode=17, HMAC=1104745215, scpUnitCount=1, header=[3, 17, 2, 1, 65, -39, 18, -1, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -123, 1, -1, 54, 64, 48, 48, -75, 76, 35, -100, 24, -50], pdu=false}, messageUnits=[ScpMessageUnit{message=[], length=0, type=0}], scpData=[3, 17, 2, 1, 65, -39, 18, -1, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -123, 1, -1, 54, 64, 48, 48, -75, 76, 35, -100, 24, -50, 0, 0], payload=[0, 0], pdu=null}</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013873</millis>
+  <date>2022-12-11T21:53:00</date>
+  <millis>1670775780996</millis>
   <sequence>20</sequence>
-  <logger>scpLog</logger>
-  <level>INFO</level>
-  <class>com.sgs.sos.server.ScpSocketHandler$DownstreamResponder</class>
-  <method>sendResponse</method>
-  <thread>13</thread>
-  <message>DATA_OUT -&gt; destination=192.168.59.229:8085</message>
-</record>
-<record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013873</millis>
-  <sequence>21</sequence>
-  <logger>scpLog</logger>
-  <level>INFO</level>
-  <class>com.sgs.sos.io.ScpInputHandler</class>
-  <method>handle</method>
-  <thread>13</thread>
-  <message>REQUEST_IN -&gt; address_in=192.168.59.229:8086</message>
-</record>
-<record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013874</millis>
-  <sequence>22</sequence>
-  <logger>scpLog</logger>
-  <level>INFO</level>
-  <class>com.sgs.sos.io.ScpInputHandler</class>
-  <method>handle</method>
-  <thread>13</thread>
-  <message>ScpData{header=ScpHeader{reserved=3, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], payloadLength=2, timestamp=1670606013873, ssid=-1044801489928158246, padding=0, priorityMode=17, HMAC=1945071741, scpUnitCount=1, header=[3, 17, 2, 1, 115, -17, 112, 125, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -59, -79, -15, -128, 30, -108, -100, 8, -125, -38], pdu=false}, messageUnits=[ScpMessageUnit{message=[], length=0, type=2}], scpData=[3, 17, 2, 1, 115, -17, 112, 125, -64, -88, 59, -27, -64, -88, 59, -27, 0, 0, 1, -124, -9, -32, -59, -79, -15, -128, 30, -108, -100, 8, -125, -38, 2, 0], payload=[2, 0], pdu=null}</message>
-</record>
-<record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013875</millis>
-  <sequence>23</sequence>
   <logger>scpLog</logger>
   <level>INFO</level>
   <class>com.sgs.sos.io.ScpProcessor</class>
   <method>process</method>
   <thread>13</thread>
-  <message>Processing ScpData =&gt; ssid=-1044801489928158246</message>
+  <message>Processing ScpData =&gt; ssid=3472474651322226894</message>
 </record>
 <record>
-  <date>2022-12-09T22:43:33</date>
-  <millis>1670606013876</millis>
-  <sequence>24</sequence>
+  <date>2022-12-11T21:53:00</date>
+  <millis>1670775780997</millis>
+  <sequence>21</sequence>
   <logger>scpLog</logger>
   <level>WARNING</level>
   <class>com.sgs.sos.session.SessionManager</class>
   <method>processMessageUnits</method>
   <thread>13</thread>
-  <message>ssid=-1044801489928158246 =&gt; ScpMessageUnit{message=[], length=0, type=2}</message>
+  <message>ssid=3472474651322226894 =&gt; ScpMessageUnit{message=[], length=0, type=0}</message>
+</record>
+<record>
+  <date>2022-12-11T21:53:00</date>
+  <millis>1670775780997</millis>
+  <sequence>22</sequence>
+  <logger>scpLog</logger>
+  <level>INFO</level>
+  <class>com.sgs.sos.session.SessionDetails</class>
+  <method>closeSession</method>
+  <thread>13</thread>
+  <message> SESSION_CLOSED : SessionDetails{ssid=3472474651322226894, currentState=3, encrypted=false, lastPacketIn=1670775768903, sourceKey=null, connectionType=1, destAddress=[-64, -88, 59, -27], srcAddress=[-64, -88, 59, -27], lastActionId=NULL_ACTION}</message>
 </record>
 </log>

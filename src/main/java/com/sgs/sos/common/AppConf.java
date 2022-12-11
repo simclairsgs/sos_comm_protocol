@@ -11,7 +11,17 @@ public class AppConf {
     private static int US_SERVER_PORT = 8085;
     private static int DS_SERVER_PORT = 8086;
     private static int HTTP_SERVER_PORT = 8080;
-    private static int BUFFER_SIZE = 256;
+    private static int BUFFER_SIZE = 512;
+    public static final int CRYPTO_KEY_SIZE = 2048;
+    private static boolean ACK_ENABLED = false;
+
+    public static boolean isAckEnabled() {
+        return ACK_ENABLED;
+    }
+
+    public static void setAckEnabled(boolean ackEnabled) {
+        ACK_ENABLED = ackEnabled;
+    }
 
     private static String KEY_LOCATION = "src/main/resources/keys/";
     private static String WEBAPP_LOCATION = "src/main/webapp/";

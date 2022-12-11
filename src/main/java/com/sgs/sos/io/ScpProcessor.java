@@ -58,12 +58,14 @@ public class ScpProcessor {
             SessionManager.createSession(ssid, data);
         for(ScpMessageUnit msg : data.getMessageUnits())
         {
-           SessionManager.processMessageUnits(ssid,msg);
+            SessionManager.processMessageUnits(ssid,msg);
         }
     }
 
     private static void processPDU(ScpData data)
     {
-
+        long ssid = data.getHeader().getSsid();
+       if(SessionManager.isActiveSession(ssid))
+           SessionManager.processDataUnits(ssid, data);
     }
 }

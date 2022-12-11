@@ -1,5 +1,6 @@
 package com.sgs.sos;
 
+import com.sgs.sos.client.ClientMain;
 import com.sgs.sos.common.AppConf;
 import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.common.ScpLogger;
@@ -18,6 +19,7 @@ public class Main {
         ServerMain.start();
 
         //Test
-        TestMain.test();
+        //TestMain.test();
+        ClientMain.main();
     }
 }
