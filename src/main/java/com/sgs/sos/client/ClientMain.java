@@ -53,7 +53,7 @@ public class ClientMain
             Thread.sleep(10000);
             scpData = new ScpData();
             scpData.initData(DESTINATION_IP, ScpConstants.HIGH, ScpConstants.SOCKET, ssid);
-            smu = new ScpMessageUnit(ScpConstants.TERMINATE_CONN);
+            smu = new ScpMessageUnit(ScpConstants.APP_DATA);
             scpData.addMessage(smu);
             ScpOutputHandler.sendData(DESTINATION_IP, CryptoManager.encrypt(DESTINATION_IP, scpData.getFullScpDataArray()));
 

@@ -75,11 +75,9 @@ public class ScpSocketHandler
                     socket.receive(packet);
                     InetAddress address = packet.getAddress();
                     int port = packet.getPort();
-                    Util.print(Arrays.toString(buffer));
                     if(CryptoManager.isIPAddressInKeymap(address))
                     {
                         buffer = Util.removeTrainlingZerosCommon(buffer);
-                        Util.print(buffer.length);
                         buffer = CryptoManager.decrypt(buffer);
                     }
                     ScpInputHandler.handle(address, port, buffer);

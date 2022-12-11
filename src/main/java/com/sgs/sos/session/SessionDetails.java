@@ -3,17 +3,14 @@ package com.sgs.sos.session;
 import com.sgs.sos.common.AppConf;
 import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.common.ScpLogger;
-import com.sgs.sos.common.Util;
 import com.sgs.sos.io.ScpOutputHandler;
 import com.sgs.sos.scp.ActionId;
 import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.scp.ScpData;
 import com.sgs.sos.scp.ScpMessageUnit;
-import com.sgs.sos.server.ScpSocketHandler;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
@@ -26,7 +23,6 @@ public class SessionDetails
     private byte currentState = 0;
     private boolean encrypted = false;
     private long lastPacketIn = 0;
-    private PublicKey sourceKey = null;
     private byte connectionType = 0;
 
     private byte[] destAddress = null;
@@ -57,14 +53,6 @@ public class SessionDetails
 
     public void setLastPacketIn(long lastPacketIn) {
         this.lastPacketIn = lastPacketIn;
-    }
-
-    public PublicKey getSourceKey() {
-        return sourceKey;
-    }
-
-    public void setSourceKey(PublicKey sourceKey) {
-        this.sourceKey = sourceKey;
     }
 
     public byte getConnectionType() {
@@ -123,7 +111,6 @@ public class SessionDetails
                 ", currentState=" + currentState +
                 ", encrypted=" + encrypted +
                 ", lastPacketIn=" + lastPacketIn +
-                ", sourceKey=" + sourceKey +
                 ", connectionType=" + connectionType +
                 ", destAddress=" + Arrays.toString(destAddress) +
                 ", srcAddress=" + Arrays.toString(srcAddress) +
@@ -135,7 +122,6 @@ public class SessionDetails
         this.currentState = ScpConstants.SESSION_STATE.ACTIVE;
         this.encrypted = false;
         scplogger.info(" SESSION_ACTIVE : "+ this.toString());
-        ssidMap.put(getSsid(), this);
         sendInitAck();
     }
 
@@ -176,5 +162,10 @@ public class SessionDetails
         {
             scplogger.severe("EXCEPTION IN SENDING BYE "+e.getLocalizedMessage());
         }
+    }
+
+    public void setEncrypted(boolean ipAddressInKeymap)
+    {
+        this.encrypted = ipAddressInKeymap;
     }
 }

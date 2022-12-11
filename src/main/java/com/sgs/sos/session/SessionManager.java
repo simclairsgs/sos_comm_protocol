@@ -3,6 +3,7 @@ package com.sgs.sos.session;
 import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.common.Util;
+import com.sgs.sos.scp.ActionId;
 import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.scp.ScpData;
 import com.sgs.sos.scp.ScpMessageUnit;
@@ -37,6 +38,7 @@ public class SessionManager
         SessionDetails session = ssidMap.get(ssid);
         if(msg.getMessageType()==ScpConstants.APP_DATA)
         {
+            session.setLastActionId(ActionId.FILE_TRANSFER);
             Util.print("PROCESS APP DATA");
         }
         else
@@ -81,7 +83,6 @@ public class SessionManager
 
     public static boolean isActiveSession(long ssid)
     {
-        scplogger.warning(ssidMap.containsKey(ssid) +" "+ ssidMap.get(ssid).getCurrentState() +" "+ ScpConstants.SESSION_STATE.ACTIVE);
         return ssidMap.containsKey(ssid) && ssidMap.get(ssid).getCurrentState() == ScpConstants.SESSION_STATE.ACTIVE;
     }
 

@@ -83,7 +83,7 @@ public class AppConf {
             ipAddressBytes = socket.getLocalAddress().getAddress();
             socket.close();
         } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
+            Util.print("INTERNET CONNECTION LOST" + e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
