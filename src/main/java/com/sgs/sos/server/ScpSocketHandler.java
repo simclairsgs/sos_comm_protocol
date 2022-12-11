@@ -1,12 +1,14 @@
 package com.sgs.sos.server;
 
 import com.sgs.sos.common.AppConf;
+import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.common.Util;
 import com.sgs.sos.io.ScpInputHandler;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class ScpSocketHandler
@@ -73,6 +75,11 @@ public class ScpSocketHandler
                     socket.receive(packet);
                     InetAddress address = packet.getAddress();
                     int port = packet.getPort();
+                    if(CryptoManager.isIPAddressInKeymap(address))
+                    {
+                        buffer = Util.removeTrainlingZerosCommon(buffer);
+                        buffer = CryptoManager.decrypt(buffer);
+                    }
                     ScpInputHandler.handle(address, port, buffer);
                 }
                 socket.close();

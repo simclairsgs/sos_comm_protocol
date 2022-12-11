@@ -1,5 +1,6 @@
 package com.sgs.sos.io;
 
+import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.common.Util;
 import com.sgs.sos.scp.ScpData;
