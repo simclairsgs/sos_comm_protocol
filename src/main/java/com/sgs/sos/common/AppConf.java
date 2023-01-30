@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class AppConf {
+    public static final int FTR_BUFFER_SIZE = 256;
     private static String ipAddress;
     private static byte[] ipAddressBytes;
     private static int US_SERVER_PORT = 8085;

@@ -35,16 +35,6 @@ public class SessionManager
         SessionDetails session = ssidMap.get(ssid);
         if(msg.getMessageType()==ScpConstants.APP_DATA)
         {
-            if(session.isActiveFileSharingSession())
-            {
-                scplogger.config("msg="+msg.getMessage().length+" "+Arrays.toString(msg.getMessage()));
-                session.writeData(msg.getMessaage());
-            }
-            else
-            {
-                scplogger.severe(" INACTIVE FS session"+ session.getLastActionId()+ " = "+ session.isActiveFileSharingSession());
-            }
-            session.setLastActionId(ActionId.NULL_ACTION);
             Util.print("PROCESS APP DATA");
             Util.print(new String(msg.getMessage()));
         }
@@ -56,7 +46,7 @@ public class SessionManager
                     session.setActiveSession();
                     break;
                     
-                case ScpConstants.FILE_TRANSFER:
+                case ScpConstants.FILE_NAME_CMD: case ScpConstants.FILE_TRANSFER:
                 {
                     session.setLastActionId(ActionId.FILE_TRANSFER);
                     String file = new String(msg.getMessage());
@@ -98,7 +88,7 @@ public class SessionManager
         }
     }
 
-    private static SessionDetails getSession(long ssid)
+    public static SessionDetails getSession(long ssid)
     {
         return ssidMap.get(ssid);
     }
