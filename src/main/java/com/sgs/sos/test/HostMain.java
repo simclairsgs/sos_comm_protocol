@@ -2,6 +2,7 @@ package com.sgs.sos.test;
 
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.common.Util;
+import com.sgs.sos.scp.FileTransferUtil;
 import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.scp.ScpData;
 import com.sgs.sos.scp.ScpMessageUnit;
@@ -14,17 +15,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-public class HostMain
+public class HostMain extends FileTransferUtil
 {
-	public static void init()
+	public void init()
 	{
 		try
 		{
 			long ssid = Util.generateSsid();
 			TestMain.testActive(ssid);
 			Thread.sleep(5000);
-			sendMetaInfo(ssid, "test.jpg");
+			super.init(ssid, "test.jpg");
 			Thread.sleep(2000);
+			super.startTransfer();
 			TestMain.testClose(ssid);
 		}
 		catch (Exception e)
@@ -64,7 +66,7 @@ public class HostMain
 		ScpSocketHandler.DownstreamResponder.sendResponse(TestMain.address, 8085, data);
 	}
 
-	public static void sendMetaInfo(long ssid, String filename)
+	public  void sendMetaInfo(long ssid, String filename)
 	{
 		ScpData scpData1 = new ScpData();
 		scpData1.initData(TestMain.DESTINATION_IP, ScpConstants.HIGH, ScpConstants.SOCKET, ssid);
@@ -72,6 +74,12 @@ public class HostMain
 		mu.setMessage(filename.getBytes());
 		scpData1.addMessage(mu);
 		byte[] data = scpData1.getFullScpDataArray();
+		ScpSocketHandler.DownstreamResponder.sendResponse(TestMain.address, 8085, data);
+	}
+
+	@Override
+	public void sendData(long ssid, byte[] data)
+	{
 		ScpSocketHandler.DownstreamResponder.sendResponse(TestMain.address, 8085, data);
 	}
 }

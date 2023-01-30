@@ -23,6 +23,7 @@ public class Main {
         //TestMain.test();
         //ClientMain.main();
         //FileTransferTest.init();
-        HostMain.init();
+        HostMain host = new HostMain();
+        host.init();
     }
 }
