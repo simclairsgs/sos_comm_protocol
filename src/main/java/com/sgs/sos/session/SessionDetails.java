@@ -9,12 +9,11 @@ import com.sgs.sos.scp.ScpConstants;
 import com.sgs.sos.scp.ScpData;
 import com.sgs.sos.scp.ScpMessageUnit;
 
+import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.logging.Logger;
-
-import static com.sgs.sos.session.SessionManager.ssidMap;
 
 public class SessionDetails
 {
@@ -27,6 +26,8 @@ public class SessionDetails
 
     private byte[] destAddress = null;
     private byte[] srcAddress = null;
+    
+    private OutputStream writer = null;
 
     public ActionId lastActionId = ActionId.NULL_ACTION;
 
@@ -85,6 +86,46 @@ public class SessionDetails
 
     public void setLastActionId(ActionId actionId) {
         this.lastActionId = actionId;
+    }
+    
+    public void setWriter(String file)
+    {
+        try {
+            OutputStream outputStream = new FileOutputStream("src/main/resources/"+file);
+            this.writer = outputStream;
+            scplogger.info("File writer active => "+ this);
+        } catch (Exception e) {
+            scplogger.severe(e.getMessage());
+        }
+    }
+    
+    public boolean isActiveFileSharingSession()
+    {
+        return (writer != null);
+    }
+
+    public void writeData(byte[] data)
+    {
+        if(writer == null)
+        {
+            scplogger.severe(" WRITER NOT INIT BUT DATA WRITE CALLED "+ this);
+            return;
+        }
+        try {
+            writer.write(data);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void closeWriter()
+    {
+        try {
+            writer.close();
+            writer = null;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public SessionDetails(long ssid, byte currentState, long lastPacketIn, byte connectionType, byte[] destAddress, byte[] srcAddress) {

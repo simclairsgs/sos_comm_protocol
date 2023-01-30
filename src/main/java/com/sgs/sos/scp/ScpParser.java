@@ -60,7 +60,7 @@ public class ScpParser
     }
 
     private static boolean isValidPDU(byte datum) {
-        return datum==ScpConstants.SRC_KEY || datum==ScpConstants.SCP_PDU;
+        return datum==ScpConstants.SRC_KEY || datum==ScpConstants.SCP_PDU || datum==9 ;
     }
 
     public static ScpData parseScpPDU(ScpData scpData) {

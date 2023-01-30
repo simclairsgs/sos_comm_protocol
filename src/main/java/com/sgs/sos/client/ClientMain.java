@@ -42,15 +42,8 @@ public class ClientMain
             Util.print("AFTER =  "+ Arrays.toString(d));
             /**/
 
-            scpData = new ScpData();
-            scpData.initData(DESTINATION_IP, ScpConstants.HIGH, ScpConstants.SOCKET, ssid);
-            byte data[]  = scpData.getFullScpDataArray(true, CryptoManager.getPublicKey().getEncoded());
-            data[32] = ScpConstants.SRC_KEY;
-            ScpOutputHandler.sendData(DESTINATION_IP, data);
-            //Thread.sleep(1000);
 
-
-            Thread.sleep(10000);
+           /* Thread.sleep(10000);
             scpData = new ScpData();
             scpData.initData(DESTINATION_IP, ScpConstants.HIGH, ScpConstants.SOCKET, ssid);
             smu = new ScpMessageUnit(ScpConstants.APP_DATA);
@@ -58,7 +51,7 @@ public class ClientMain
             ScpOutputHandler.sendData(DESTINATION_IP, CryptoManager.encrypt(DESTINATION_IP, scpData.getFullScpDataArray()));
 
             Thread.sleep(1000);
-            Util.print(SessionManager.getSsidMap());
+            Util.print(SessionManager.getSsidMap());*/
         }
         catch (Exception e)
         {

@@ -12,7 +12,7 @@ public class AppConf {
     private static int DS_SERVER_PORT = 8086;
     private static int HTTP_SERVER_PORT = 8080;
     private static int BUFFER_SIZE = 512;
-    public static final int CRYPTO_KEY_SIZE = 2048;
+    public static final int CRYPTO_KEY_SIZE = 512;
     private static boolean ACK_ENABLED = false;
 
     public static boolean isAckEnabled() {

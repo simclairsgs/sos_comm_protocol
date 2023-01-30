@@ -3,10 +3,7 @@ package com.sgs.sos.session;
 import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.common.Util;
-import com.sgs.sos.scp.ActionId;
-import com.sgs.sos.scp.ScpConstants;
-import com.sgs.sos.scp.ScpData;
-import com.sgs.sos.scp.ScpMessageUnit;
+import com.sgs.sos.scp.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -38,8 +35,18 @@ public class SessionManager
         SessionDetails session = ssidMap.get(ssid);
         if(msg.getMessageType()==ScpConstants.APP_DATA)
         {
-            session.setLastActionId(ActionId.FILE_TRANSFER);
+            if(session.isActiveFileSharingSession())
+            {
+                scplogger.config("msg="+msg.getMessage().length+" "+Arrays.toString(msg.getMessage()));
+                session.writeData(msg.getMessaage());
+            }
+            else
+            {
+                scplogger.severe(" INACTIVE FS session"+ session.getLastActionId()+ " = "+ session.isActiveFileSharingSession());
+            }
+            session.setLastActionId(ActionId.NULL_ACTION);
             Util.print("PROCESS APP DATA");
+            Util.print(new String(msg.getMessage()));
         }
         else
         {
@@ -48,6 +55,15 @@ public class SessionManager
                 case ScpConstants.INIT_CONN:
                     session.setActiveSession();
                     break;
+                    
+                case ScpConstants.FILE_TRANSFER:
+                {
+                    session.setLastActionId(ActionId.FILE_TRANSFER);
+                    String file = new String(msg.getMessage());
+                    scplogger.warning(" INCOMING FILE NAME = "+file);
+                    session.setWriter(file);
+                }
+                break;
 
                 case ScpConstants.TERMINATE_CONN:
                     if(session.getCurrentState() == ScpConstants.SESSION_STATE.ACTIVE)
@@ -72,9 +88,21 @@ public class SessionManager
                     scplogger.severe("EXCEPTION IN SRC_KEY_SET " + e.getLocalizedMessage());
                 }
                 break;
+                
+            case 9:
+            {
+                scplogger.info("SESSION ="+ getSession(ssid));
+                scplogger.info(" PDU_IN  = "+ new String(Arrays.copyOfRange(msg, 5 , msg.length)));
+            }
+            break;
         }
     }
 
+    private static SessionDetails getSession(long ssid)
+    {
+        return ssidMap.get(ssid);
+    }
+    
     private static void setSourceEncryptionKey(InetAddress srcAddress, byte[] publicKey)
     {
         scplogger.info("SETTING SRC KEY "+ srcAddress.getHostAddress());

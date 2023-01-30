@@ -41,6 +41,7 @@ public class ScpSocketHandler
                 DatagramPacket packet  = new DatagramPacket(buffer,BUFFER_SIZE);
                 socket.send(packet);
                 scplogger.info(("DATA_OUT -> destination="+destination.getHostAddress()+":"+port));
+                scplogger.warning("BEFORE SEND = "+ data.length +" - "+ Arrays.toString(data));
                 socket.disconnect();
 
             } catch (SocketException e) {
@@ -77,7 +78,8 @@ public class ScpSocketHandler
                     int port = packet.getPort();
                     if(CryptoManager.isIPAddressInKeymap(address))
                     {
-                        buffer = Util.removeTrainlingZerosCommon(buffer);
+                        buffer = Arrays.copyOfRange(buffer, 0, 256);
+                        scplogger.warning("AFTER -"+buffer.length+ " - "+ Arrays.toString(buffer));
                         buffer = CryptoManager.decrypt(buffer);
                     }
                     ScpInputHandler.handle(address, port, buffer);

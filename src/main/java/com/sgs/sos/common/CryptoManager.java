@@ -1,10 +1,13 @@
 package com.sgs.sos.common;
 
+import com.sgs.sos.common.fpe.FF3_1;
+
 import javax.crypto.Cipher;
 import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.security.*;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 import static com.sgs.sos.session.SessionManager.scplogger;
@@ -89,12 +92,14 @@ public class CryptoManager
     {
         try
         {
+            scplogger.warning("size = "+data.length);
             Cipher decrypt=Cipher.getInstance("RSA/ECB/PKCS1Padding");
             decrypt.init(Cipher.DECRYPT_MODE, privateKey);
             return decrypt.doFinal(data);
         }
         catch (Exception e)
         {
+            Util.print(e.getCause()+"\n"+Arrays.toString(e.getStackTrace()));
             scplogger.severe("EXCEPTION IN Decryption "+ e.getLocalizedMessage());
         }
         return null;

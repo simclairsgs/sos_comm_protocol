@@ -77,6 +77,12 @@ public class ScpProcessor {
     {
         long ssid = data.getHeader().getSsid();
        if(SessionManager.isActiveSession(ssid))
-           SessionManager.processDataUnits(ssid, data);
+       {
+           SessionManager.processDataUnits(ssid, data);   
+       }
+       else
+       {
+           scplogger.severe(" ERROR INACTIVE SESSION DATA RECEIVED");
+       }
     }
 }
