@@ -35,6 +35,11 @@ public class SessionManager
         SessionDetails session = ssidMap.get(ssid);
         if(msg.getMessageType()==ScpConstants.APP_DATA)
         {
+            if( ! SessionManager.isActiveSession(ssid))
+            {
+                scplogger.severe(" APP DATA RECEIVED FOR INACTIVE SESSION "+ ssid);
+                return;
+            }
             Util.print("PROCESS APP DATA");
             Util.print(new String(msg.getMessage()));
         }
@@ -55,6 +60,13 @@ public class SessionManager
                 }
                 break;
 
+                case ScpConstants.F_CLOSE:
+                {
+                    session.closeWriter();
+                    session.lastActionId = ActionId.NULL_ACTION;
+                }
+                break;
+                
                 case ScpConstants.TERMINATE_CONN:
                     if(session.getCurrentState() == ScpConstants.SESSION_STATE.ACTIVE)
                     session.closeSession();

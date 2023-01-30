@@ -26,6 +26,7 @@ public class ScpConstants {
     // PRIORITY
     public static final byte HIGH = 0x01;
     public static final byte LOW = 0x00;
+    public static final byte F_CLOSE = 0x72;
 
     public class SESSION_STATE
     {

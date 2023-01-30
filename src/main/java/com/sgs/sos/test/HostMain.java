@@ -27,6 +27,7 @@ public class HostMain extends FileTransferUtil
 			super.init(ssid, "test.jpg");
 			Thread.sleep(2000);
 			super.startTransfer();
+			Thread.sleep(10000);
 			TestMain.testClose(ssid);
 		}
 		catch (Exception e)
