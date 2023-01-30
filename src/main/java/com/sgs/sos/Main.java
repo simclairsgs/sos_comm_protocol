@@ -6,6 +6,7 @@ import com.sgs.sos.common.CryptoManager;
 import com.sgs.sos.common.ScpLogger;
 import com.sgs.sos.server.ServerMain;
 import com.sgs.sos.test.FileTransferTest;
+import com.sgs.sos.test.HostMain;
 import com.sgs.sos.test.TestMain;
 
 public class Main {
@@ -21,6 +22,7 @@ public class Main {
         //Test
         //TestMain.test();
         //ClientMain.main();
-        FileTransferTest.init();
+        //FileTransferTest.init();
+        HostMain.init();
     }
 }
