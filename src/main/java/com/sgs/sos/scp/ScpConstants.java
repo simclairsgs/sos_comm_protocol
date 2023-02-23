@@ -15,6 +15,7 @@ public class ScpConstants {
 
 
     public static final byte SCP_PDU = 0x50;
+    public static final byte FILE_TRANSFER = 0x60;
 
     // CONN-TYPE
     public static final byte SOCKET = 0x01;

@@ -60,14 +60,14 @@ public class ScpParser
     }
 
     private static boolean isValidPDU(byte datum) {
-        return datum==ScpConstants.SRC_KEY || datum==ScpConstants.SCP_PDU;
+        return datum==ScpConstants.SRC_KEY || datum==ScpConstants.SCP_PDU || datum==9 ;
     }
 
     public static ScpData parseScpPDU(ScpData scpData) {
         try
         {
             byte[] data = scpData.getPayload();
-            scpData.setPdu(new ScpDataUnit((byte)0x50));
+            scpData.setPdu(new ScpDataUnit(data[0]));
             scpData.getPdu().setPayloadLength(Util.bytesToInt(Arrays.copyOfRange(data,1,5)));
             scpData.getPdu().setPayload(Arrays.copyOfRange(data,5,5 + scpData.getPdu().getPayloadLength()));
             return scpData;

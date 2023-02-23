@@ -36,9 +36,9 @@ public class ScpData implements Serializable {
         messageUnits.add(msg);
     }
 
-    public byte[] getFullScpDataArray(boolean isPDU, byte[] data)
+    public byte[] getFullScpDataArray(boolean isPDU, byte[] data, byte type)
     {
-        pdu = new ScpDataUnit(ScpConstants.SCP_PDU);
+        pdu = new ScpDataUnit(type);
         pdu.setPayload(data);
         byte[] payload = pdu.getPDUPayload();
         header.setPayloadLength((byte)0);

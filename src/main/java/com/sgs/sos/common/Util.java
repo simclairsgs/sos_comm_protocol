@@ -59,6 +59,16 @@ public class Util {
         return Arrays.copyOfRange(data,0,32+len);
     }
 
+    public static byte[] removeTrainlingZerosCommon(byte[] data)
+    {
+        int i = data.length - 1;
+        while(data[i] == 0)
+        {
+            --i;
+        }
+        return Arrays.copyOfRange(data,0, i+1);
+    }
+
     public static byte[] addBytesToArray(byte[] b, byte... elem)
     {
         return ArrayUtils.addAll(b, elem);
