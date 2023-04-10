@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP - SCP Interface test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+<script>
+    navigator.registerProtocolHandler("web+scp", "http://localhost:8080/scp?data=%s");
+    console.log("REGD. SCP Protocol")
+    
+    function sendData() {
+        window.location.href = "web+scp:"+document.getElementById("data").value;
+    }
+</script>
+<center>
+    <textarea id="data" placeholder="Data to send" type="text" cols="50" rows="5"></textarea>
+    <br>
+    <button onclick="sendData()"> SEND DATA </button>
+</center>
+</body>
+</html>
