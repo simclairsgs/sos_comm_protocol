@@ -16,6 +16,8 @@ public class ScpConstants {
 
     public static final byte SCP_PDU = 0x50;
     public static final byte FILE_TRANSFER = 0x60;
+    public static final byte FILE_NAME_CMD = 0x70;
+    public static final byte FILE_DATA = 0x71;
 
     // CONN-TYPE
     public static final byte SOCKET = 0x01;
@@ -24,6 +26,7 @@ public class ScpConstants {
     // PRIORITY
     public static final byte HIGH = 0x01;
     public static final byte LOW = 0x00;
+    public static final byte F_CLOSE = 0x72;
 
     public class SESSION_STATE
     {
