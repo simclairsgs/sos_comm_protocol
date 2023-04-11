@@ -46,7 +46,6 @@ public abstract class FileTransferUtil
 			int cnt = 0;
 			while ((chunkLen = is.read(chunk)) != -1) {
 				ScpLogger.getScpLogger().info(" T "+ ++cnt +" - >" + Arrays.toString(chunk));
-				Thread.sleep(20);
 				sendData(ssid, Util.addByteArrays(header, chunk));
 			}
 			sendEndTransfer(ssid);
@@ -56,8 +55,6 @@ public abstract class FileTransferUtil
 		} catch (IOException ioE) {
 			// problem reading, handle case
 			ScpLogger.getScpLogger().severe("FILE IO EXCEPTION ");
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
 		}
 	}
 

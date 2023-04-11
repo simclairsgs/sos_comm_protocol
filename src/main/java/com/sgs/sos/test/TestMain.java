@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class TestMain {
-    public static String DESTINATION_IP = "192.168.59.1";
+    public static String DESTINATION_IP = "192.168.236.1";
     public static InetAddress address = new InetSocketAddress(DESTINATION_IP, AppConf.getUsServerPort()).getAddress();
     static Logger scplogger;
 
